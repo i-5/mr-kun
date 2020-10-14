@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ===================================================================
+
+   Build file for MRKun - for use with the Jakarta Ant java build tool
+
+Authors:
+  Rick Knowles <rick_knowles@hotmail.com>
+
+Modified by:
+  Damon Lok	
+
+Copyright:
+  Copyright (c) 2001 So-net M3, Inc.
+  
+
+   $Id: build.xml,v 1.1.1.1.2.16 2001/12/11 04:30:07 rick Exp $
+
+
+   
+==================================================================== -->
+
+<project name="MRKun" default="main" basedir=".">
+
+  <property name="wl_home" value="E:/weblogic/"/>
+  <property name="wl_server" value="v2server"/>
+  <property name="mrkun.build" value="${wl_home}/${wl_server}"/>
+
+  
+  <!-- ==================== Initialization properties ===================== -->
+  <property name="java.home" value="F:/jdk1.3.1"/>
+  <property name="build.compiler" value="classic"/>
+  <property name="debug" value="on"/>
+  <property name="optimize" value="true"/>
+  <property name="backup.dir" value="../../backups"/>  
+  <property name="mrkun.build.server" value="${mrkun.build}/serverclasses"/>
+  <property name="mrkun.build.ejb" value="${mrkun.build}/ejbclasses"/>
+  <property name="mrkun.build.servlet" value="${mrkun.build}/servletclasses"/>
+  <property name="mrkun.build.web" value="${mrkun.build}/public_html"/>
+  <property name="mrkun.build.lib" value="${mrkun.build}/lib"/>
+  <property name="mrkun.dist" value="../dist"/>
+  <property name="mrkun.apidoc" value="../doc"/>
+  <property name="packages" value="jp.ne.sonet.mrkun.*"/>
+  <property name="path.server" value="jp/ne/sonet/mrkun/server/**,jp/ne/sonet/mrkun/framework/**,jp/ne/sonet/mrkun/valueobject/**,jp/ne/sonet/mrkun/dao/**,jp/ne/spnet/mrkun/taglib/**,"/>
+  <property name="path.servlet" value="jp/ne/sonet/mrkun/servlet/**,medipro/**,jp/ne/sonet/mrkun/framework/servlet/**"/>
+  <property name="path.ejb" value="jp/ne/sonet/mrkun/sessionEJB/**,jp/ne/sonet/mrkun/framework/sessionEJB/**"/>
+
+  <target name="timestamp">
+    <tstamp/>
+  </target>
+
+  <!-- ======================== Copy static files ========================= -->
+  <target name="prepare" depends="timestamp">
+
+    <!-- Create destination directories -->
+    <mkdir dir="${mrkun.build.server}"/>
+    <mkdir dir="${mrkun.build.servlet}"/>
+    <mkdir dir="${mrkun.build.ejb}"/>    
+    <mkdir dir="${mrkun.build.web}"/>    
+    <mkdir dir="${mrkun.build.lib}"/>    
+	
+    <!-- Copy pages -->
+    <copy todir="${mrkun.build.web}">
+      <fileset dir="jsp"/>
+    </copy>
+    <touch>
+      <fileset dir="${mrkun.build.web}"/>
+    </touch>
+
+    <!-- Copy XML resources -->
+    <copy todir="${mrkun.build.server}">
+      <fileset dir="java">
+        <include name="*.xml"/>
+      </fileset>
+    </copy>
+
+    <!-- Copy libraries -->
+    <copy todir="${mrkun.build.lib}">
+      <fileset dir="lib">
+        <exclude name="weblogic*.jar"/>
+      </fileset>
+    </copy>
+
+    <!-- Copy web conf -->
+    <copy todir="${mrkun.build.web}/WEB-INF">
+      <fileset dir="web-inf">
+        <include name="*.xml"/>
+        <include name="*.tld"/>
+      </fileset>
+    </copy>
+
+
+  </target>
+
+  <!-- ==================== Main build target  ======================= -->
+
+  <target name="serverclasses" depends="prepare">
+  <!-- Compile the standard server components -->
+    <javac srcdir="java"
+           destdir="${mrkun.build.server}"
+           excludes="jp/ne/sonet/mrkun/servlet, medipro, jp/ne/sonet/mrkun/sessionEJB"
+           debug="${debug}" 
+           encoding="SJIS"
+           optimize="${optimize}"
+           deprecation="off" >
+      <classpath>
+        <pathelement location="${java.home}/lib/tools.jar"/>
+        <pathelement location="${java.home}/lib/dt.jar"/>
+        <pathelement location="${java.home}/jre/lib/rt.jar"/>
+        <fileset dir="lib">
+          <include name="**.jar"/>
+          <include name="**.zip"/>
+        </fileset>
+      </classpath>
+    </javac>
+   <delete dir="${mrkun.build.server}/jp/ne/sonet/mrkun/sessionEJB"/> 
+  </target>
+
+  <target name="ejbclasses" depends="prepare, serverclasses">
+  <!-- Compile the standard server components -->
+    <javac srcdir="java/jp/ne/sonet/mrkun/sessionEJB"
+           destdir="${mrkun.build.ejb}"
+           debug="${debug}" 
+           encoding="SJIS"
+           optimize="${optimize}"
+           deprecation="off" >
+      <classpath>
+        <pathelement location="${java.home}/lib/tools.jar"/>
+        <pathelement location="${java.home}/lib/dt.jar"/>
+        <pathelement location="${java.home}/jre/lib/rt.jar"/>
+	<pathelement location="${mrkun.build.server}"/>
+        <fileset dir="lib">
+          <include name="**.jar"/>
+          <include name="**.zip"/>
+        </fileset>
+      </classpath>
+    </javac>
+   <delete file="${mrkun.build.ejb}/jp/ne/sonet/mrkun/sessionEJB/MRManager.class"/>
+   <delete file="${mrkun.build.ejb}/jp/ne/sonet/mrkun/sessionEJB/DRManager.class"/>
+   <delete file="${mrkun.build.ejb}/jp/ne/sonet/mrkun/sessionEJB/ReportManager.class"/>
+   <delete file="${mrkun.build.ejb}/jp/ne/sonet/mrkun/sessionEJB/AssetManager.class"/>
+  </target>
+ 
+  <target name="servletclasses" depends="prepare, ejbclasses">  
+  <!-- Compile the standard server components -->
+    <javac srcdir="java/jp/ne/sonet/mrkun/servlet"
+           destdir="${mrkun.build.servlet}"
+           debug="${debug}" 
+           encoding="SJIS"
+           optimize="${optimize}"
+           deprecation="off" >
+      <classpath>
+        <pathelement location="${java.home}/lib/tools.jar"/>
+        <pathelement location="${java.home}/lib/dt.jar"/>
+        <pathelement location="${java.home}/jre/lib/rt.jar"/>
+	<pathelement location="${mrkun.build.server}"/>
+	<pathelement location="${mrkun.build.ejb}"/>
+        <fileset dir="lib">
+          <include name="**.jar"/>
+          <include name="**.zip"/>
+        </fileset>
+      </classpath>
+    </javac>
+    <javac srcdir="java/medipro"
+           destdir="${mrkun.build.servlet}"
+           debug="${debug}" 
+           encoding="SJIS"
+           optimize="${optimize}"
+           deprecation="off" >
+      <classpath>
+        <pathelement location="${java.home}/lib/tools.jar"/>
+        <pathelement location="${java.home}/lib/dt.jar"/>
+        <pathelement location="${java.home}/jre/lib/rt.jar"/>
+	<pathelement location="${mrkun.build.server}"/>
+	<pathelement location="${mrkun.build.ejb}"/>
+        <fileset dir="lib">
+          <include name="**.jar"/>
+          <include name="**.zip"/>
+        </fileset>
+      </classpath>
+    </javac>
+  </target>
+
+  <target name="main" depends="prepare, ejbclasses, servletclasses"/>
+
+  <!-- ==================== Distribution target  ======================= -->
+  <target name="dist" depends="clean, main, ejb-dist, web-dist">
+    <jar   jarfile="${mrkun.dist}/mrkun.ear"
+           basedir="${mrkun.build}"
+           includes="**" /> 
+  </target>
+
+  <target name="ejb-dist" depends="main">
+    <mkdir dir="${mrkun.dist}"/>
+    <jar   jarfile="${mrkun.dist}/mrkun-ejb.jar"
+           basedir="${mrkun.build.ejb}"
+           includes="**" /> 
+  </target>
+
+  <target name="web-dist" depends="main">
+    <mkdir dir="${mrkun.dist}"/>
+    <jar   jarfile="${mrkun.dist}/mrkun-web.war"
+           basedir="${mrkun.build.web}"
+           includes="**" /> 
+  </target>
+
+  <!-- ==================== Administrative targets  ======================= -->
+  <target name="clean">
+    <!-- delete dir="${mrkun.build}"/ -->
+    <delete dir="${mrkun.build.server}"/>
+    <delete dir="${mrkun.build.ejb}"/>
+    <delete dir="${mrkun.build.servlet}"/>
+    <delete dir="${mrkun.build.web}"/>
+    <delete dir="${mrkun.build.lib}"/>
+  </target>
+
+  <target name="backup" depends="timestamp">
+    <mkdir dir="${backup.dir}"/>
+    <tar tarfile="${backup.dir}/mrkun_${DSTAMP}${TSTAMP}.tar" basedir=".." includes="development/**"/>
+    <gzip src="${backup.dir}/mrkun_${DSTAMP}${TSTAMP}.tar" zipfile="${backup.dir}/mrkun_${DSTAMP}${TSTAMP}.tar.gz"/>
+    <delete file="${backup.dir}/mrkun_${DSTAMP}${TSTAMP}.tar"/>
+  </target>
+
+  <target name="all" depends="clean,dist,javadoc"/>
+
+  <!-- ==================== Creates the API documentation  ================ -->
+  <target name="javadoc">
+    <delete dir="${mrkun.apidoc}"/>
+    <mkdir dir="${mrkun.apidoc}"/>
+    <javadoc packagenames="${packages}"
+             sourcepath="java"
+             destdir="${mrkun.apidoc}"
+             author="true"
+             version="true"
+             use="true"
+             splitindex="true"
+             noindex="false"
+             windowtitle="So-net M3 MRKun project API documentation"
+             doctitle="So-net M3 MRKun project API documentation">
+      <classpath>
+        <pathelement location="${java.home}/lib/tools.jar"/>
+        <pathelement location="${java.home}/lib/dt.jar"/>
+        <pathelement location="${java.home}/jre/lib/rt.jar"/>
+        <fileset dir="lib">
+          <include name="**.jar"/>
+          <include name="**.zip"/>
+        </fileset>
+      </classpath>
+    </javadoc>
+  </target>
+
+  <!-- =============================== Help =============================== -->
+  <target name="targets">
+    <echo message=""/>
+    <echo message="ANT build targets for MRKun"/>
+    <echo message=""/>
+    <echo message="The following targets are available:"/>
+    <echo message="  all                  Clean, then create distribution"/>
+    <echo message="  clean                Clean build and dist directories"/>
+    <echo message="  dist                 Create binary distribution WAR file"/>
+    <echo message="  main                 Build mrkun components"/>
+    <echo message="  javadoc              Build API documentation"/>
+    <echo message="  backup               Backup the source archive"/>
+  </target>
+
+</project>

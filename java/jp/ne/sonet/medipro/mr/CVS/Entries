@@ -1,0 +1,22 @@
+/AttachFileTable.java/1.1.2.1/Tue Aug 14 00:55:52 2001//Tmrk_br_2
+/AttachLinkTable.java/1.1.2.1/Tue Aug 14 00:55:52 2001//Tmrk_br_2
+/CallNaiyoInfo.java/1.1.2.1/Tue Aug 14 00:55:52 2001//Tmrk_br_2
+/CallNaiyoInfoManager.java/1.1.2.1/Tue Aug 14 00:55:52 2001//Tmrk_br_2
+/CatchPctInfo.java/1.1.2.1/Tue Aug 14 00:55:52 2001//Tmrk_br_2
+/CatchPctInfoManager.java/1.1.2.1/Tue Aug 14 00:55:52 2001//Tmrk_br_2
+/ConstantMasterTable.java/1.1.2.1/Tue Aug 14 00:55:52 2001//Tmrk_br_2
+/ConstantMasterTableManager.java/1.1.2.1/Tue Aug 14 00:55:52 2001//Tmrk_br_2
+/DoctorInfo.java/1.1.2.1/Tue Aug 14 00:55:52 2001//Tmrk_br_2
+/DoctorInfoManager.java/1.1.2.1/Tue Aug 14 00:55:52 2001//Tmrk_br_2
+/DummySession.java/1.1.2.1/Tue Aug 14 00:55:52 2001//Tmrk_br_2
+/HtmlTagUtil.java/1.1.2.1/Tue Aug 14 00:55:52 2001//Tmrk_br_2
+/MessageBodyTable.java/1.1.2.1/Tue Aug 14 00:55:52 2001//Tmrk_br_2
+/MessageHeaderTable.java/1.1.2.1/Tue Aug 14 00:55:52 2001//Tmrk_br_2
+/MessageTable.java/1.1.2.1/Tue Aug 14 00:55:52 2001//Tmrk_br_2
+/MrInfo.java/1.1.2.1/Tue Aug 14 00:55:52 2001//Tmrk_br_2
+/MrInfoManager.java/1.1.2.1/Tue Aug 14 00:55:52 2001//Tmrk_br_2
+/UpdatePoint.java/1.1.2.1/Mon Sep 10 03:22:56 2001//Tmrk_br_2
+D/common////
+D/server////
+/MailUtil.java/1.1.2.3/Mon Sep 17 09:53:37 2001//Tmrk_br_2
+/MessageTableManager.java/1.1.2.6/Wed Nov 14 01:14:05 2001//Tmrk_br_2

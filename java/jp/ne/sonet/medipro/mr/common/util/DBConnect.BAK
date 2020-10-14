@@ -1,0 +1,57 @@
+package jp.ne.sonet.medipro.mr.common.util;
+
+import java.util.*;
+import java.sql.*;
+import java.net.*;
+import jp.ne.sonet.medipro.mr.common.exception.*;
+import jp.ne.sonet.mrkun.dao.DAOFacade;
+
+/**
+ * <h3>ＤＢコネクトユーティリティ</h3>
+ * 
+ * <br>
+ * ここで型の記述を挿入してください。
+ * 作成日 : (00/06/25 午前 02:10:24)
+ * @author: 
+ */
+public class DBConnect {
+    /**
+     * DbConnect コンストラクター・コメント。
+     */
+    public DBConnect() {
+    }
+    /**
+     * ここでメソッドの記述を挿入してください。
+     * 作成日 : (00/06/25 午前 02:57:09)
+     * @param conn com.sun.rmi.iiop.Connection
+     * @exception jp.ne.sonet.medipro.mr.common.exception.MrException 例外記述
+     */
+    public void closeDB(Connection conn) {
+
+	try {
+	    if ( conn != null ) {
+		conn.close();
+	    }
+	} catch (Exception e) {
+	    throw new MrException(e);
+	}
+		
+    }
+    /**
+     * ここでメソッドの記述を挿入してください。
+     * 作成日 : (00/06/25 午前 02:11:35)
+     * @return com.sun.rmi.iiop.Connection
+     * @exception jp.ne.sonet.medipro.mr.common.exception.MrException 例外記述
+     */
+    public Connection getDBConnect() {
+
+	Connection conn = null;
+	
+	try {
+	    	conn = DAOFacade.getConnection();
+	} catch (java.sql.SQLException e) {
+	        throw new MrException(e);
+	} 
+    }
+}
+

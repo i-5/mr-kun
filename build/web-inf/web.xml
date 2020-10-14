@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN"
+    "http://java.sun.com/j2ee/dtds/web-app_2.2.dtd">
+
+<web-app>
+
+  <servlet>
+    <servlet-name>LoginCtlr</servlet-name>
+    <servlet-class>jp.ne.sonet.mrkun.framework.servlet.LoginCtlr</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>MR_DoctorInfoCtlr</servlet-name>
+    <servlet-class>jp.ne.sonet.mrkun.framework.servlet.MR_DoctorInfoCtlr</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>MessageListCtlr</servlet-name>
+    <servlet-class>jp.ne.sonet.mrkun.framework.servlet.MessageListCtlr</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>DetailMessageCtlr</servlet-name>
+    <servlet-class>jp.ne.sonet.mrkun.framework.servlet.DetailMessageCtlr</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>SelectMessageCtlr</servlet-name>
+    <servlet-class>jp.ne.sonet.mrkun.framework.servlet.SelectMessageCtlr</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>MR_ShowDoctorProfileCtlr</servlet-name>
+    <servlet-class>jp.ne.sonet.mrkun.framework.servlet.MR_ShowDoctorProfileCtlr</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>MR_SelectRecipientCtlr</servlet-name>
+    <servlet-class>jp.ne.sonet.mrkun.framework.servlet.MR_SelectRecipientCtlr</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>MR_WriteDetailCtlr</servlet-name>
+    <servlet-class>jp.ne.sonet.mrkun.framework.servlet.MR_WriteDetailCtlr</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>MR_SelectResourceCtlr</servlet-name>
+    <servlet-class>jp.ne.sonet.mrkun.framework.servlet.MR_SelectResourceCtlr</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>MR_ResourcePreviewCtlr</servlet-name>
+    <servlet-class>jp.ne.sonet.mrkun.framework.servlet.MR_ResourcePreviewCtlr</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>MR_SelectTemplateCtlr</servlet-name>
+    <servlet-class>jp.ne.sonet.mrkun.framework.servlet.MR_SelectTemplateCtlr</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>MR_TemplatePreviewCtlr</servlet-name>
+    <servlet-class>jp.ne.sonet.mrkun.framework.servlet.MR_TemplatePreviewCtlr</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>MR_ConfirmDetailCtlr</servlet-name>
+    <servlet-class>jp.ne.sonet.mrkun.framework.servlet.MR_ConfirmDetailCtlr</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>MR_SelectAttachmentCtlr</servlet-name>
+    <servlet-class>jp.ne.sonet.mrkun.framework.servlet.MR_SelectAttachmentCtlr</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>MR_ProfileCtlr</servlet-name>
+    <servlet-class>jp.ne.sonet.mrkun.framework.servlet.MR_ProfileCtlr</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>DR_ProfileCtlr</servlet-name>
+    <servlet-class>jp.ne.sonet.mrkun.framework.servlet.DR_ProfileCtlr</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>LoginCtlr</servlet-name>
+    <url-pattern>/LoginCtlr</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>MR_DoctorInfoCtlr</servlet-name>
+    <url-pattern>/MR_DoctorInfoCtlr</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>MessageListCtlr</servlet-name>
+    <url-pattern>/MessageListCtlr</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>DetailMessageCtlr</servlet-name>
+    <url-pattern>/DetailMessageCtlr</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>SelectMessageCtlr</servlet-name>
+    <url-pattern>/SelectMessageCtlr</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>MR_ShowDoctorProfileCtlr</servlet-name>
+    <url-pattern>/MR_ShowDoctorProfileCtlr</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>MR_SelectRecipientCtlr</servlet-name>
+    <url-pattern>/MR_SelectRecipientCtlr</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>MR_WriteDetailCtlr</servlet-name>
+    <url-pattern>/MR_WriteDetailCtlr</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>MR_SelectResourceCtlr</servlet-name>
+    <url-pattern>/MR_SelectResourceCtlr</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>MR_ResourcePreviewCtlr</servlet-name>
+    <url-pattern>/MR_ResourcePreviewCtlr</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>MR_SelectTemplateCtlr</servlet-name>
+    <url-pattern>/MR_SelectTemplateCtlr</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>MR_TemplatePreviewCtlr</servlet-name>
+    <url-pattern>/MR_TemplatePreviewCtlr</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>MR_ConfirmDetailCtlr</servlet-name>
+    <url-pattern>/MR_ConfirmDetailCtlr</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>MR_SelectAttachmentCtlr</servlet-name>
+    <url-pattern>/MR_SelectAttachmentCtlr</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>MR_ProfileCtlr</servlet-name>
+    <url-pattern>/MR_ProfileCtlr</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>DR_ProfileCtlr</servlet-name>
+    <url-pattern>/DR_ProfileCtlr</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+
+  <taglib>
+    <taglib-uri>http://www.so-netm3.co.jp/taglib.tld</taglib-uri>
+    <taglib-location>/WEB-INF/taglib.tld</taglib-location>
+  </taglib>
+
+  <ejb-ref>
+    <ejb-ref-name>ejb/DRManager</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>jp.ne.sonet.mrkun.ejb.DRManagerHomeIntf</home>
+    <remote>jp.ne.sonet.mrkun.ejb.DRManagerRemoteIntf</remote>
+  </ejb-ref>
+
+</web-app>

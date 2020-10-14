@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+<!DOCTYPE ejb-jar 
+          PUBLIC '-//Sun Microsystems, Inc.//DTD Enterprise JavaBeans 1.1//EN' 
+                 'http://java.sun.com/j2ee/dtds/ejb-jar_1_1.dtd'>
+
+<ejb-jar>
+  <enterprise-beans>
+    <session>
+      <ejb-name>DRManager</ejb-name>
+      <home>jp.ne.sonet.mrkun.sessionEJB.DRManagerHomeIntf</home>
+      <remote>jp.ne.sonet.mrkun.sessionEJB.DRManagerRemoteIntf</remote>
+      <ejb-class>jp.ne.sonet.mrkun.sessionEJB.DRManager</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Container</transaction-type>
+      <env-entry>
+        <env-entry-name>sql/UpdateMrBannerPositionSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>UPDATE sentaku_toroku SET sentaku_kbn = ? WHERE dr_id = ? AND mr_id = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/DRInsertSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>INSERT INTO doctor (dr_id,system_cd,password,name,name_kana,birthday,email,point,mrkun_mishiyo_flg,koumuin,toroku_ymd,update_time,lastyear_point,ruiseki_mr) values ( ?,?,NULL,?,?,NULL,?,(select to_number(naiyo1) from constant_master where constant_cd = 'ENTRY_POINT'),0,?,SYSDATE,SYSDATE,0,1)</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/DRSystemCdSeqSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT TO_CHAR(system_cd.nextval ,'0000000000') counter FROM dual</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/DRInsertHospitalSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>INSERT INTO kinmusaki (dr_id,seq,kinmusaki_name,start_ymd,update_time) values (?,1,?,SYSDATE,SYSDATE)</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/DRSearchNameSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT dr.dr_id, dr.system_cd, dr.name_kana kanaName, dr.name kanjiName, kin.kinmusaki_name hospital, dr.dr_license_cd medCertification, dr.koumuin publicOfficial, dr.email email, dr.point point, dr.lastyear_point lastYearPoint, mrkun_spam_allowed, generic_spam_allowed FROM doctor dr, kinmusaki kin WHERE dr.dr_id = kin.dr_id AND dr.name = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/DRSearchIDSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT dr.dr_id, dr.system_cd, dr.name_kana kanaName, dr.name kanjiName, kin.kinmusaki_name hospital, dr.dr_license_cd medCertification, dr.koumuin publicOfficial, dr.email email, dr.point point, dr.lastyear_point lastYearPoint, mrkun_spam_allowed, generic_spam_allowed FROM doctor dr, kinmusaki kin WHERE dr.dr_id = kin.dr_id AND dr.dr_id = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/DRUpdateSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>UPDATE Doctor SET name_kana = ?, name = ?, dr_license_cd = ?, koumuin = ?, email = ?, mrkun_spam_allowed = ?, generic_spam_allowed = ?, point = ? WHERE dr_Id = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/DRDeleteSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>DELETE FROM Doctor WHERE dr_id = ?</env-entry-value>
+      </env-entry>
+
+      <env-entry>
+        <env-entry-name>sql/DRLoadProfileSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT item FROM doctor_profile WHERE dr_id = ? and item_cd = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/DRSaveProfileSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>INSERT INTO doctor_profile ( dr_id,item_cd,seq,item,start_ymd) values ( ?,?,?,?,SYSDATE )</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/DRDeleteProfileSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>DELETE FROM doctor_profile WHERE dr_id = ? AND item_cd = ?</env-entry-value>
+      </env-entry>
+
+      <env-entry>
+        <env-entry-name>sql/DRSaveHospitalSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>UPDATE kinmusaki SET kinmusaki_name = ? WHERE dr_id = ?</env-entry-value>
+      </env-entry>
+
+      <!-- env-entry>
+        <env-entry-name>sql/DRInsertMemoSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>INSERT INTO sentaku_toroku (dr_memo, mr_id, dr_id, seq) SELECT ?, ?, ?, TO_CHAR(sentaku_toroku_seq.nextval ,'0000000000') FROM dual</env-entry-value>
+      </env-entry -->
+      <env-entry>
+        <env-entry-name>sql/DRSaveMemoSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>UPDATE sentaku_toroku SET dr_memo = ? WHERE mr_id = ? AND dr_id = ?</env-entry-value>
+      </env-entry>
+
+      <env-entry>
+        <env-entry-name>sql/DRLoadMRISQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT mr_id FROM sentaku_toroku WHERE dr_id = ?</env-entry-value>
+      </env-entry>
+
+      <env-entry>
+        <env-entry-name>sql/MRInformationInsertSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>INSERT INTO sentaku_toroku ( DR_ID, MR_ID, SEQ, DR_MEMO, SENTAKU_KBN, START_YMD, END_YMD, NAME, KINMUSAKI, MAKER_CUST_ID, MAKER_SHISETSU_ID, TARGET_RANK, SYOKUSYU, SENMON1, SENMON2, SENMON3, YAKUSYOKU, SOTSUGYO_DAIGAKU, SOTSUGYO_YEAR, SYUMI, SONOTA, UPDATE_TIME ) SELECT ?, ?, ?, NULL, ?, SYSDATE, NULL, name, kinmusaki_name, NULL, NULL, ?, 'à„ét', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, SYSDATE FROM doctor, kinmusaki WHERE doctor.dr_id = ? AND doctor.dr_id = kinmusaki.dr_id (+)</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MRInformationSeqSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT TRIM(TO_CHAR(sentaku_toroku_seq.nextval,'000')) counter FROM dual</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MRInformationFrontCountSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT count(*) counter FROM sentaku_toroku WHERE dr_id = ? AND sentaku_kbn IN ('1', '2')</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/CompanyTargetRankSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT company.target_rank target_rank FROM mr,company WHERE mr.company_cd = company.company_cd AND mr.mr_id = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/DefaultMRFrontCheck</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT dr_id,mr_id,sentaku_kbn FROM sentaku_toroku WHERE dr_id = ? AND mr_id = (SELECT naiyo1 FROM constant_master WHERE constant_cd = 'ENQUETE_MR_ID') AND sentaku_kbn in ('1', '2')</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MRInformationSearchHistoryByIDSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT 1 FROM sentaku_toroku_hist WHERE dr_id = ? AND mr_id = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MRInformationUpdateSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>UPDATE MRInformation SET mrPreference, = ?, memo = ? WHERE mrId = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MRInformationDeleteSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>DELETE FROM MRInformation WHERE mrId = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+       	<env-entry-name>sql/ConstantSearchIDSQL</env-entry-name> 
+        <env-entry-type>java.lang.String</env-entry-type> 
+        <env-entry-value>SELECT constant_cd, name, naiyo1, naiyo2, naiyo3 FROM constant_master WHERE constant_cd = ?</env-entry-value> 
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/DRQualificationSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT shikaku_cd,shikaku_name FROM shikaku</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/DRSpecialtySQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT shinryoka_cd,shinryoka_name FROM shinryoka</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/EnqueteLogInsertSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>INSERT INTO enquete_send_log ( dr_id,enq_id,message_header_id,send_date ) VALUES ( ?,?,?,sysdate )</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/EnqueteLogInitInsertSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>INSERT INTO enquete_send_log ( dr_id,enq_id,message_header_id,send_date ) VALUES ( ?,(SELECT MAX(enq_id) FROM enquete_id WHERE status is not null),NULL,sysdate )</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/EnqueteLogUpdateSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>UPDATE enquete_send_log SET status = 1,reply_date = sysdate WHERE dr_id = ? AND enq_id = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/EnqueteLogSearchSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT id.enq_id enq_id,id.url url,id.status enqstatus,log.dr_id dr_id,log.status status,log.message_header_id message_header_id FROM enquete_send_log log, enquete_id id WHERE log.dr_id = ? AND log.enq_id = ? AND log.enq_id = id.enq_id</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/EnqueteMinSearchSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT MIN(log.enq_id) enq_id,id.url url,id.status enqstatus,log.dr_id dr_id,log.status status,log.message_header_id message_header_id FROM enquete_send_log log, enquete_id id WHERE log.dr_id = ? AND log.status IS NULL AND log.enq_id = id.enq_id GROUP BY id.url ,id.status ,log.dr_id ,log.status ,log.message_header_id</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/QuestionListSearchSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT question_name FROM enquete_question WHERE enq_id = ? AND group_id = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/EnqueteAnswerInsertSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>INSERT INTO enquete_answer ( user_id,enq_id,minor_id,field,answer,answer_date) VALUES ( ?,?,?,?,?,sysdate)</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/GroupByDrIdSearchSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT shinryoka.shinryoka_group shinryoka_group FROM shinryoka,doctor_profile profile WHERE profile.dr_id = ? AND profile.item_cd = '0000000004' AND profile.item = shinryoka.shinryoka_cd</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/AddEnquetePointUpdateSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>UPDATE doctor SET point = point + (select to_number(naiyo1) from constant_master where constant_cd = 'ENQUETE_POINT') WHERE dr_id = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/AddEnquetePoint2UpdateSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>UPDATE doctor SET point = point + (select to_number(naiyo2) from constant_master where constant_cd = 'ENQUETE_POINT') WHERE dr_id = ?</env-entry-value>
+      </env-entry>
+
+      <env-entry>
+	<env-entry-name>sql/InsertLoginInfo</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>INSERT INTO LOGINDR (LOGINTIME, DR_ID, USER_AGENT) VALUES(SYSDATE, ?, ?) </env-entry-value>
+      </env-entry>
+
+
+      <env-entry>
+        <env-entry-name>sql/SelectDoctorPoint</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT point FROM doctor WHERE dr_id = ?</env-entry-value>
+      </env-entry>
+    </session>
+
+  </enterprise-beans>
+
+  <assembly-descriptor>
+    <container-transaction>
+      <method>
+        <ejb-name>DRManager</ejb-name>
+        <method-name>*</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+  </assembly-descriptor>
+
+</ejb-jar>

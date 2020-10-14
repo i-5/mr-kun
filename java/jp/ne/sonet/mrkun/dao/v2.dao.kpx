@@ -1,0 +1,347 @@
+<?xml version='1.0'?>
+<kawaproject timestamp="Mon Dec 24 05:33:16 2001">
+<versioninfo>
+<documentversion>
+<major>"0"</major>
+<minor>"1"</minor>
+</documentversion>
+<productversion>
+<value>"121"</value>
+</productversion>
+</versioninfo>
+<path>"E:\So-netM3\Development_Phase\CVS_src\java\jp\ne\sonet\mrkun\dao\"</path>
+<classpaths>
+<classpath enabled="0">
+<value>" D:\weblogic\classes\boot\"</value>
+</classpath>
+<classpath enabled="0">
+<value>" D:\weblogic\eval\cloudscape\lib\cloudscape.jar"</value>
+</classpath>
+<classpath enabled="0">
+<value>" D:\weblogic\lib\poolorb.jar"</value>
+</classpath>
+<classpath enabled="1">
+<value>"D:\weblogic\classes\"</value>
+</classpath>
+<classpath enabled="1">
+<value>"D:\weblogic\lib\weblogicaux.jar"</value>
+</classpath>
+<classpath enabled="1">
+<value>"D:\weblogic\myserver\serverclasses\"</value>
+</classpath>
+<classpath enabled="1">
+<value>"D:\weblogic\myserver\ejbclasses\"</value>
+</classpath>
+<classpath enabled="1">
+<value>"D:\weblogic\myserver\servletclasses\"</value>
+</classpath>
+</classpaths>
+<profile>
+<name>"Profile 1"</name>
+</profile>
+<runfile>
+</runfile>
+<items>
+<folder>
+<name>"v2.dao"</name>
+<relativepath>"E:\So-netM3\Development_Phase\CVS_src\java\jp\ne\sonet\mrkun\dao\v2.dao.kpx"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"Address_DAO.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"Company_DAO.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"DAO_SQL.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"DAOConstants.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"DAOFacade.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"DatabaseConstant_DAO.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"DR_DAO.java"</relativepath>
+<scmstatus id="2">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"DRInformation_DAO.java"</relativepath>
+<scmstatus id="2">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"EDetailCategory_DAO.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"EmailContact_DAO.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"EnqueteInfo_DAO.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"Importance_DAO.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"MedicalCertification_DAO.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"Message_DAO.java"</relativepath>
+<scmstatus id="2">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"MR_DAO.java"</relativepath>
+<scmstatus id="2">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"MRInformation_DAO.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"PhoneContact_DAO.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"Report_DAO.java"</relativepath>
+<scmstatus id="2">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"ResourceCat_DAO.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"ResourceLink_DAO.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"Sequence.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"Template_DAO.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"TemplateCategory_DAO.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"WebImage_DAO.java"</relativepath>
+<scmstatus id="2">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+</folder>
+</items>
+<compileroptions debug="1" nowarning="0" optimize="0" verbose="0" deprecated="0">
+<outputdirvalues checked="1">
+<outputdirvalue selected="1">
+<value>"D:\weblogic\myserver\serverclasses"</value>
+</outputdirvalue>
+</outputdirvalues>
+<customoptions checked="0">
+</customoptions>
+</compileroptions>
+<interpreteroptions debug="0" nogc="0" verbosegc="0" verbose="0" checksrc="0" verifieroff="0" verifieron="0" verifierremote="0">
+<commandlineargs checked="0">
+</commandlineargs>
+<runclassnames checked="1">
+<runclassname selected="15">
+<value>"weblogic.Server"</value>
+</runclassname>
+</runclassnames>
+<executedirs checked="1">
+<executedir selected="11">
+<value>"D:\weblogic"</value>
+</executedir>
+</executedirs>
+<customoptions checked="0">
+<customoption selected="3217408">
+<value>""</value>
+</customoption>
+</customoptions>
+<maxmemory checked="1">
+<value>"64m"</value>
+</maxmemory>
+<startmemory checked="1">
+<value>"64m"</value>
+</startmemory>
+<javacodestack checked="0">
+<value>""</value>
+</javacodestack>
+<ccodestack checked="0">
+<value>""</value>
+</ccodestack>
+<propertyvalues checked="1">
+<propertyvalue selected="243">
+<value>"weblogic.class.path=D:\weblogic\classes;D:\weblogic\license;D:\weblogic\lib\weblogicaux.jar;D:\weblogic\myserver\serverclasses;D:\weblogic\myserver\ejbclasses;D:\weblogic\myserver\servletclasses java.security.policy=D:\weblogic\weblogic.policy"</value>
+</propertyvalue>
+</propertyvalues>
+<remotedebugvalues checked="0">
+<remotedebugvalue selected="0">
+<value>""</value>
+</remotedebugvalue>
+</remotedebugvalues>
+</interpreteroptions>
+<javadocoptions version="0" type="1" author="0" noindex="0" notree="0" nodeprecated="0">
+<outputdirvalues checked="1">
+<outputdirvalue selected="1">
+<value>"E:\So-netM3\Development_Phase\CVS_src\doc\Java_doc"</value>
+</outputdirvalue>
+</outputdirvalues>
+<customoptions checked="0">
+<customoption selected="0">
+<value>""</value>
+</customoption>
+</customoptions>
+</javadocoptions>
+<rmioptions useprojectclasspath="0" debugtables="0" depend="0" debug="0" optimize="0" nowarn="0" verbose="0" nowrite="0" keepgenerated="0" show="0">
+<outputdirs checked="0">
+<outputdir selected="0">
+<value>""</value>
+</outputdir>
+</outputdirs>
+<stubdirs checked="0">
+<stubdir selected="0">
+<value>""</value>
+</stubdir>
+</stubdirs>
+<skeldirs checked="0">
+<skeldir selected="0">
+<value>""</value>
+</skeldir>
+</skeldirs>
+<customoptions checked="0">
+<customoption selected="0">
+<value>""</value>
+</customoption>
+</customoptions>
+<files>
+</files>
+</rmioptions>
+<kawajar>
+<value>""</value>
+</kawajar>
+<breakpoints>
+<breakpoint>
+<relativepath>"MR_DAO.java"</relativepath>
+<classname>"jp.ne.sonet.mrkun.dao.MR_DAO"</classname>
+<linenumber>"266"</linenumber>
+</breakpoint>
+<breakpoint>
+<relativepath>"..\servlet\MR_DoctorInfoCtlr.java"</relativepath>
+<classname>"jp.ne.sonet.mrkun.servlet.MR_DoctorInfoCtlr"</classname>
+<linenumber>"108"</linenumber>
+</breakpoint>
+</breakpoints>
+</kawaproject>

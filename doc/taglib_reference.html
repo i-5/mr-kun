@@ -1,0 +1,638 @@
+<html>
+<head>
+<title>Tara JSP Tag Library</title>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+
+<table border=0 cellspacing=50 cellpadding=0 width="800">
+  <tr> 
+    <td> 
+      <h1><font color="#FF0000" face="Helvetica"><a name="PUT"></a>MRKun Taglibrary Reference</font> </h1>
+      <p>This is a reference guide for the utility JSP tags that you should use for the MRKun Project.<br>
+      Note that, with the exception of one tag, this is a general taglibrary that can be used on any 
+      project.</p>
+      <hr>
+      <dl> 
+        <p> 
+      </dl>
+      <h2><a name="1021623"> </a><font color="#FF0000" face="Helvetica">Contents</font> 
+      </h2>
+      <p><a href="#etl">The Tag Library </a><a href="#etl">&lt;ptaglib&gt;</a></p>
+      <blockquote> 
+        <a href="#condition">&lt;tt:condition&gt;</a><br>
+        <a href="#date">&lt;tt:date&gt;</a><br>
+        <a href="#dateFormat">&lt;tt:dateFormat&gt;</a><br>
+        <a href="#decimalFormat">&lt;tt:decimalFormat&gt;</a><br>
+        <a href="#docLink">&lt;tt:docLink&gt;</a><br>
+        <a href="#isEmpty">&lt;tt:isEmpty&gt;</a><br>
+        <a href="#isNull">&lt;tt:isNull&gt;</a><br>
+        <a href="#iterate">&lt;tt:iterate&gt;</a><br>
+        <a href="#link">&lt;tt:link&gt;</a><br>
+        <a href="#loop">&lt;tt:loop&gt;</a><br>
+        <a href="#messageFormat">&lt;tt:messageFormat&gt;</a><br>
+        <a href="#notEmpty">&lt;tt:notEmpty&gt;</a><br>
+        <a href="#notNull">&lt;tt:notNull&gt;</a><br>
+      </blockquote>
+      <hr>
+      <h2><font color="#FF0000" face="Helvetica">The Tag Library</font><font color="#FF0000" face="Helvetica"> 
+        &lt;taglib&gt;</font><a name="etl"></a> </h2>
+      <p>The <font face="Courier New, Courier, mono, Arial" size="-1">&lt;taglib&gt;</font>
+        contains generic tags you can use to create JSP pages. </p>
+      <p>To use tags from this library in your JSP page you must add the following
+        line at the top of the JSP page:<br>
+        <font face="Courier New, Courier, mono, Arial" size="-1">&lt;%@ taglib uri="/taglib.tld" prefix="tt" %&gt;</font>
+      </p> 
+      <hr>
+      
+      <a name="condition">
+      <h3><font color="#FF0000" face="Helvetica">&lt;tt:condition&gt;</font></h3>
+      <p>The <font face="Courier New, Courier, mono, Arial" size="-1">&lt;tt:condition&gt; 
+        </font>tag is used to evaluate an expression. The body of the tag is executed
+        if the expression evaluates to value.
+        </p>
+      <table border cellspacing=0 cellpadding=5 bordercolorlight="#FFFFFF" bordercolordark="#000000" width="600" >
+        <caption>&nbsp;</caption>
+        <tr bgcolor="#CCCCCC"> 
+          <th><font face="Helvetica" color="#FF0000">Attribute</font></th>
+          <th><font face="Helvetica" color="#FF0000">Required?</font></th>
+          <th><font face="Helvetica" color="#FF0000">Default</font> <br>
+            <font face="Helvetica" color="#FF0000">value</font></th>
+          <th><font face="Helvetica" color="#FF0000">Description</font></th>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">expression</font></b></td>
+          <td> 
+            <p>yes</p>
+          </td>
+          <td>&nbsp; </td>
+          <td> 
+            <p>The expression to evaluate.</p>
+          </td>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">value</font></b></td>
+          <td> 
+            <p>yes</p>
+          </td>
+          <td>&nbsp;</td>
+          <td> 
+            <p>The value to compare the result of the expression to.</p>
+          </td>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">ignoreCase</font></b></td>
+          <td> 
+            <p>no</p>
+          </td>
+          <td>false</font></td>
+          <td> 
+            <p>If true, ignore case when comparing the result of the expression to value.</p>
+          </td>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">negate</font></b></td>
+          <td> 
+            <p>no</p>
+          </td>
+          <td>false</font></td>
+          <td> 
+            <p>If true, negates the evaluation of the tag.</p>
+          </td>
+        </tr>
+      </table>
+      <p>Example:</p>
+      <pre><font face="Courier New">&lt;tt:condition expression=&quot;&lt;%= myName %&gt;&quot; value=&quot;nicklas&quot; ignoreCase=&quot;true&quot;&gt;
+  Hi Nicklas!
+&lt;/tt:condition&gt;
+      </font></pre>
+      <hr>
+      
+      </a>
+      
+      <a name="date">
+      <h3><font color="#FF0000" face="Helvetica">&lt;tt:date&gt;</font></h3>
+      <p>The <font face="Courier New, Courier, mono, Arial" size="-1">&lt;tt:date&gt; 
+        </font>tag is used to display the current date in a specified format.
+        </p>
+      <table border cellspacing=0 cellpadding=5 bordercolorlight="#FFFFFF" bordercolordark="#000000" width="600" >
+        <caption>&nbsp;</caption>
+        <tr bgcolor="#CCCCCC"> 
+          <th><font face="Helvetica" color="#FF0000">Attribute</font></th>
+          <th><font face="Helvetica" color="#FF0000">Required?</font></th>
+          <th><font face="Helvetica" color="#FF0000">Default</font> <br>
+            <font face="Helvetica" color="#FF0000">value</font></th>
+          <th><font face="Helvetica" color="#FF0000">Description</font></th>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">pattern</font></b></td>
+          <td> 
+            <p>yes</p>
+          </td>
+          <td>&nbsp; </td>
+          <td> 
+            <p>The pattern used to format the date. The syntax of this pattern is the same as used in the Java class SimpleDateFormat.</p>
+          </td>
+        </tr>
+      </table>
+      <p>Example:</p>
+      <pre><font face="Courier New">&lt;tt:date pattern=&quot;MM/dd/yy hh:mm:ss a&quot; /&gt;
+      </font></pre>
+      <hr>      
+
+      </a>      
+
+      <a name="dateFormat">
+      <h3><font color="#FF0000" face="Helvetica">&lt;tt:dateFormat&gt;</font></h3>
+      <p>The <font face="Courier New, Courier, mono, Arial" size="-1">&lt;tt:dateFormat&gt; 
+        </font>tag is used to display a date in a specified format.</p>
+      <table border cellspacing=0 cellpadding=5 bordercolorlight="#FFFFFF" bordercolordark="#000000" width="600" >
+        <caption>&nbsp;</caption>
+        <tr bgcolor="#CCCCCC"> 
+          <th><font face="Helvetica" color="#FF0000">Attribute</font></th>
+          <th><font face="Helvetica" color="#FF0000">Required?</font></th>
+          <th><font face="Helvetica" color="#FF0000">Default</font> <br>
+            <font face="Helvetica" color="#FF0000">value</font></th>
+          <th><font face="Helvetica" color="#FF0000">Description</font></th>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">date</font></b></td>
+          <td> 
+            <p>yes</p>
+          </td>
+          <td>&nbsp; </td>
+          <td> 
+            <p>The date to format. This object must be a Date class, not a string.</p>
+          </td>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">pattern</font></b></td>
+          <td> 
+            <p>yes</p>
+          </td>
+          <td>&nbsp; </td>
+          <td> 
+            <p>The pattern used to format the date. The syntax of this pattern is the same as used in the Java class SimpleDateFormat.</p>
+          </td>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">locale</font></b></td>
+          <td> 
+            <p>no</p>
+          </td>
+          <td>default Locale </td>
+          <td> 
+            <p>The locale used when formatting the date.</p>
+          </td>
+        </tr>
+      </table>
+      <p>Example:</p>
+      <pre><font face="Courier New">&lt;tt:dateFormat date=&quot;&lt;%= myDate %&gt;&quot; pattern=&quot;yyyy-MM-dd&quot; /&gt;
+      </font></pre>
+      <hr>      
+
+      </a>      
+
+      <a name="decimalFormat">
+      <h3><font color="#FF0000" face="Helvetica">&lt;tt:decimalFormat&gt;</font></h3>
+      <p>The <font face="Courier New, Courier, mono, Arial" size="-1">&lt;tt:decimalFormat&gt; 
+        </font>tag is used to display a number in a specified format.</p>
+      <table border cellspacing=0 cellpadding=5 bordercolorlight="#FFFFFF" bordercolordark="#000000" width="600" >
+        <caption>&nbsp;</caption>
+        <tr bgcolor="#CCCCCC"> 
+          <th><font face="Helvetica" color="#FF0000">Attribute</font></th>
+          <th><font face="Helvetica" color="#FF0000">Required?</font></th>
+          <th><font face="Helvetica" color="#FF0000">Default</font> <br>
+            <font face="Helvetica" color="#FF0000">value</font></th>
+          <th><font face="Helvetica" color="#FF0000">Description</font></th>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">number</font></b></td>
+          <td> 
+            <p>yes</p>
+          </td>
+          <td>&nbsp; </td>
+          <td> 
+            <p>The number to format. This object must be a subclass of Number, not a string.</p>
+          </td>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">pattern</font></b></td>
+          <td> 
+            <p>yes</p>
+          </td>
+          <td>&nbsp; </td>
+          <td> 
+            <p>The pattern used to format the number. The syntax of this pattern is the same as used in the Java class DecimalFormat.</p>
+          </td>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">locale</font></b></td>
+          <td> 
+            <p>no</p>
+          </td>
+          <td>default Locale </td>
+          <td> 
+            <p>The locale used when formatting the number.</p>
+          </td>
+        </tr>
+      </table>
+      <p>Example:</p>
+      <pre><font face="Courier New">&lt;tt:decimalFormat number=&quot;&lt;%= myNumber %&gt;&quot; pattern=&quot;#,##0.00&quot; /&gt;
+      </font></pre>
+      <hr>      
+
+      </a>      
+
+      <a name="docLink">
+      <h3><font color="#FF0000" face="Helvetica">&lt;tt:docLink&gt;</font></h3>
+      <p>The <font face="Courier New, Courier, mono, Arial" size="-1">&lt;tt:docLink&gt; 
+        </font>tag is used to create a link to a document.</p>
+      <p>This tag is not yet fully implemented.</p>
+
+      <table border cellspacing=0 cellpadding=5 bordercolorlight="#FFFFFF" bordercolordark="#000000" width="600" >
+        <caption>&nbsp;</caption>
+        <tr bgcolor="#CCCCCC"> 
+          <th><font face="Helvetica" color="#FF0000">Attribute</font></th>
+          <th><font face="Helvetica" color="#FF0000">Required?</font></th>
+          <th><font face="Helvetica" color="#FF0000">Default</font> <br>
+            <font face="Helvetica" color="#FF0000">value</font></th>
+          <th><font face="Helvetica" color="#FF0000">Description</font></th>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">docId</font></b></td>
+          <td> 
+            <p>yes</p>
+          </td>
+          <td>&nbsp; </td>
+          <td> 
+            <p>The id of the document to link to.</p>
+          </td>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">docType</font></b></td>
+          <td> 
+            <p>no?</p>
+          </td>
+          <td>&nbsp; </td>
+          <td> 
+            <p>The type of the document.</p>
+          </td>
+        </tr>
+      </table>
+      <p>Example:</p>
+      <pre><font face="Courier New">&lt;tt:docLink docId=&quot;123&quot; docType=&quot;?&quot; /&gt;
+      </font></pre>
+      <hr>      
+
+      </a>      
+
+      <a name="isEmpty">
+      <h3><font color="#FF0000" face="Helvetica">&lt;tt:isEmpty&gt;</font></h3>
+      <p>The <font face="Courier New, Courier, mono, Arial" size="-1">&lt;tt:isEmpty&gt; 
+        </font>tag is used to check to see if a collection is empty. The body of the tag 
+        is executed if the collection is empty.
+      <table border cellspacing=0 cellpadding=5 bordercolorlight="#FFFFFF" bordercolordark="#000000" width="600" >
+        <caption>&nbsp;</caption>
+        <tr bgcolor="#CCCCCC"> 
+          <th><font face="Helvetica" color="#FF0000">Attribute</font></th>
+          <th><font face="Helvetica" color="#FF0000">Required?</font></th>
+          <th><font face="Helvetica" color="#FF0000">Default</font> <br>
+            <font face="Helvetica" color="#FF0000">value</font></th>
+          <th><font face="Helvetica" color="#FF0000">Description</font></th>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">collection</font></b></td>
+          <td> 
+            <p>yes</p>
+          </td>
+          <td>&nbsp; </td>
+          <td> 
+            <p>The name of the collection.</p>
+          </td>
+        </tr>
+      </table>
+      <p>Example:</p>
+      <pre><font face="Courier New">&lt;tt:isEmpty collection=&quot;my_list&quot;&gt;
+  my_list is empty!
+&lt;/tt:isEmpty&gt;
+      </font></pre>
+      <hr>
+      
+      </a>
+      
+      <a name="isNull">
+      <h3><font color="#FF0000" face="Helvetica">&lt;tt:isNull&gt;</font></h3>
+      <p>The <font face="Courier New, Courier, mono, Arial" size="-1">&lt;tt:isNull&gt; 
+        </font>tag is used to evaluate an expression. The body of the tag is executed
+        if the expression is null.<br>Or in the case of a string, if the string is null
+        or empty.</p>
+      <p>Since you can't do an if-else construct in JSP, you often have to use isNull
+        together with the <a href="#notNull">notNull</a> tag.
+      <table border cellspacing=0 cellpadding=5 bordercolorlight="#FFFFFF" bordercolordark="#000000" width="600" >
+        <caption>&nbsp;</caption>
+        <tr bgcolor="#CCCCCC"> 
+          <th><font face="Helvetica" color="#FF0000">Attribute</font></th>
+          <th><font face="Helvetica" color="#FF0000">Required?</font></th>
+          <th><font face="Helvetica" color="#FF0000">Default</font> <br>
+            <font face="Helvetica" color="#FF0000">value</font></th>
+          <th><font face="Helvetica" color="#FF0000">Description</font></th>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">expression</font></b></td>
+          <td> 
+            <p>yes</p>
+          </td>
+          <td>&nbsp; </td>
+          <td> 
+            <p>The expression to evaluate.</p>
+          </td>
+        </tr>
+      </table>
+      <p>Example:</p>
+      <pre><font face="Courier New">&lt;tt:isNull expression=&quot;&lt;%= myObject %&gt;&quot;&gt;
+  myObject is null!
+&lt;/tt:isNull&gt;
+      </font></pre>
+      <hr>
+      
+      <a name="iterate">
+      <h3><font color="#FF0000" face="Helvetica">&lt;tt:iterate&gt;</font></h3>
+      <p>The <font face="Courier New, Courier, mono, Arial" size="-1">&lt;tt:iterate&gt; 
+        </font>tag is used to iterate over a collection.</p>
+      <table border cellspacing=0 cellpadding=5 bordercolorlight="#FFFFFF" bordercolordark="#000000" width="600" >
+        <caption>&nbsp;</caption>
+        <tr bgcolor="#CCCCCC"> 
+          <th><font face="Helvetica" color="#FF0000">Attribute</font></th>
+          <th><font face="Helvetica" color="#FF0000">Required?</font></th>
+          <th><font face="Helvetica" color="#FF0000">Default</font> <br>
+            <font face="Helvetica" color="#FF0000">value</font></th>
+          <th><font face="Helvetica" color="#FF0000">Description</font></th>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">collection</font></b></td>
+          <td> 
+            <p>yes</p>
+          </td>
+          <td>&nbsp; </td>
+          <td> 
+            <p>The collection to iterate over. This object must be a subclass of Collection.</p>
+          </td>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">type</font></b></td>
+          <td> 
+            <p>yes</p>
+          </td>
+          <td>&nbsp; </td>
+          <td> 
+            <p>The complete class name of the elements in the collection.</p>
+          </td>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">variable</font></b></td>
+          <td> 
+            <p>yes</p>
+          </td>
+          <td>&nbsp; </td>
+          <td> 
+            <p>The name of a variable that holds the current element in the collection.
+            The variable can be referenced inside the body of the tag.</p>
+          </td>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">counterVariable</font></b></td>
+          <td> 
+            <p>no</p>
+          </td>
+          <td>&nbsp; </td>
+          <td> 
+            <p>The name of a variable that holds the number of the current element in the collection.
+            The variable can be referenced inside the body of the tag.</p>
+          </td>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">start</font></b></td>
+          <td> 
+            <p>no</p>
+          </td>
+          <td>0</td>
+          <td> 
+            <p>The start value for the counterVariable. This only affects the counterVariable.
+            The iterate tag always goes through the entire collection.</p>
+          </td>
+        </tr>
+      </table>
+      <p>Example:</p>
+      <pre><font face="Courier New">&lt;tt:iterate collection=&quot;offering_list&quot; type=&quot;com.eoffering.server.PublicOfferingData&quot; variable=&quot;publicOffering&quot;&gt;
+  &lt;tr&gt;
+  &lt;td&gt;&lt;%= publicOffering.getOfferingType() %&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tt:iterate&gt;
+      </font></pre>
+      <hr>      
+
+      </a>      
+
+      <a name="link">
+      <h3><font color="#FF0000" face="Helvetica">&lt;tt:link&gt;</font></h3>
+      <p>The <font face="Courier New, Courier, mono, Arial" size="-1">&lt;tt:link&gt; 
+        </font>tag is used to display an HTML link.</p>
+      <p>The url is passed through encodeURL to enable users without cookies.
+      Therefore you should always use this tag when you have links in your JSP page.</p>
+      <p>If the body of the tag is empty, the url link is used as the text of the link.</p>
+
+      <table border cellspacing=0 cellpadding=5 bordercolorlight="#FFFFFF" bordercolordark="#000000" width="600" >
+        <caption>&nbsp;</caption>
+        <tr bgcolor="#CCCCCC"> 
+          <th><font face="Helvetica" color="#FF0000">Attribute</font></th>
+          <th><font face="Helvetica" color="#FF0000">Required?</font></th>
+          <th><font face="Helvetica" color="#FF0000">Default</font> <br>
+            <font face="Helvetica" color="#FF0000">value</font></th>
+          <th><font face="Helvetica" color="#FF0000">Description</font></th>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">url</font></b></td>
+          <td> 
+            <p>yes</p>
+          </td>
+          <td>&nbsp; </td>
+          <td> 
+            <p>The url of the link.</p>
+          </td>
+        </tr>
+      </table>
+      <p>Examples:</p>
+      <pre><font face="Courier New">&lt;tt:link url=&quot;www.acme.com&quot;&gt;ACME&lt;/tt:link&gt;
+&lt;tt:link url=&quot;www.eoffering.com&quot; /&gt;
+      </font></pre>
+      <hr>      
+
+      </a>      
+
+      <a name="loop">
+      <h3><font color="#FF0000" face="Helvetica">&lt;tt:loop&gt;</font></h3>
+      <p>The <font face="Courier New, Courier, mono, Arial" size="-1">&lt;tt:loop&gt; 
+        </font>tag is used to create a loop.</p>
+      <table border cellspacing=0 cellpadding=5 bordercolorlight="#FFFFFF" bordercolordark="#000000" width="600" >
+        <caption>&nbsp;</caption>
+        <tr bgcolor="#CCCCCC"> 
+          <th><font face="Helvetica" color="#FF0000">Attribute</font></th>
+          <th><font face="Helvetica" color="#FF0000">Required?</font></th>
+          <th><font face="Helvetica" color="#FF0000">Default</font> <br>
+            <font face="Helvetica" color="#FF0000">value</font></th>
+          <th><font face="Helvetica" color="#FF0000">Description</font></th>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">start</font></b></td>
+          <td> 
+            <p>no</p>
+          </td>
+          <td>0</td>
+          <td> 
+            <p>The start value for the loop.</p>
+          </td>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">end</font></b></td>
+          <td> 
+            <p>yes</p>
+          </td>
+          <td>&nbsp; </td>
+          <td> 
+            <p>The end value for the loop.</p>
+          </td>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">counterVariable</font></b></td>
+          <td> 
+            <p>no</p>
+          </td>
+          <td>&nbsp; </td>
+          <td> 
+            <p>The name of a variable that you can reference inside the body of the tag.</p>
+          </td>
+        </tr>
+      </table>
+      <p>Example:</p>
+      <pre><font face="Courier New">&lt;tt:loop start=&quot;1&quot; end=&quot;3&quot; counterVariable=&quot;i&quot;&gt;Looping: &lt;%= i %&gt;&lt;/tt:loop&gt;
+      </font></pre>
+      <hr>      
+
+      </a>      
+
+      <a name="messageFormat">
+      <h3><font color="#FF0000" face="Helvetica">&lt;tt:messageFormat&gt;</font></h3>
+      <p>The <font face="Courier New, Courier, mono, Arial" size="-1">&lt;tt:messageFormat&gt; 
+        </font>tag is used to display a message with specified parameters.</p>
+      <table border cellspacing=0 cellpadding=5 bordercolorlight="#FFFFFF" bordercolordark="#000000" width="600" >
+        <caption>&nbsp;</caption>
+        <tr bgcolor="#CCCCCC"> 
+          <th><font face="Helvetica" color="#FF0000">Attribute</font></th>
+          <th><font face="Helvetica" color="#FF0000">Required?</font></th>
+          <th><font face="Helvetica" color="#FF0000">Default</font> <br>
+            <font face="Helvetica" color="#FF0000">value</font></th>
+          <th><font face="Helvetica" color="#FF0000">Description</font></th>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">arguments</font></b></td>
+          <td> 
+            <p>yes</p>
+          </td>
+          <td>&nbsp; </td>
+          <td> 
+            <p>An array of arguments for the message.</p>
+          </td>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">pattern</font></b></td>
+          <td> 
+            <p>yes</p>
+          </td>
+          <td>&nbsp; </td>
+          <td> 
+            <p>The pattern used to format the message. The syntax of this pattern is the same as used in the Java class MessageFormat.</p>
+          </td>
+        </tr>
+      </table>
+      <p>Example:</p>
+      <pre><font face="Courier New">&lt;tt:messageFormat pattern=&quot;Error {0} occurred. The message is: {1}&quot; arguments=&quot;&lt;%= errorArgs %&gt;&quot; /&gt;
+      </font></pre>
+      <hr>      
+
+      </a>      
+
+      <a name="notEmpty">
+      <h3><font color="#FF0000" face="Helvetica">&lt;tt:notEmpty&gt;</font></h3>
+      <p>The <font face="Courier New, Courier, mono, Arial" size="-1">&lt;tt:notEmpty&gt; 
+        </font>tag is used to check to see if a collection is empty. The body of the tag 
+        is executed if the collection is not empty.
+      <table border cellspacing=0 cellpadding=5 bordercolorlight="#FFFFFF" bordercolordark="#000000" width="600" >
+        <caption>&nbsp;</caption>
+        <tr bgcolor="#CCCCCC"> 
+          <th><font face="Helvetica" color="#FF0000">Attribute</font></th>
+          <th><font face="Helvetica" color="#FF0000">Required?</font></th>
+          <th><font face="Helvetica" color="#FF0000">Default</font> <br>
+            <font face="Helvetica" color="#FF0000">value</font></th>
+          <th><font face="Helvetica" color="#FF0000">Description</font></th>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">collection</font></b></td>
+          <td> 
+            <p>yes</p>
+          </td>
+          <td>&nbsp; </td>
+          <td> 
+            <p>The name of the collection.</p>
+          </td>
+        </tr>
+      </table>
+      <p>Example:</p>
+      <pre><font face="Courier New">&lt;tt:notEmpty collection=&quot;my_list&quot;&gt;
+  my_list is not empty!
+&lt;/tt:notEmpty&gt;
+      </font></pre>
+      <hr>
+      
+      </a>
+      
+      <a name="notNull">
+      <h3><font color="#FF0000" face="Helvetica">&lt;tt:notNull&gt;</font></h3>
+      <p>The <font face="Courier New, Courier, mono, Arial" size="-1">&lt;tt:notNull&gt; 
+        </font>tag is used to evaluate an expression. The body of the tag is executed
+        if the expression is not null.</p>
+      <p>Since you can't do an if-else construct in JSP, you often have to use notNull
+        together with the <a href="#isNull">isNull</a> tag.
+      <table border cellspacing=0 cellpadding=5 bordercolorlight="#FFFFFF" bordercolordark="#000000" width="600" >
+        <caption>&nbsp;</caption>
+        <tr bgcolor="#CCCCCC"> 
+          <th><font face="Helvetica" color="#FF0000">Attribute</font></th>
+          <th><font face="Helvetica" color="#FF0000">Required?</font></th>
+          <th><font face="Helvetica" color="#FF0000">Default</font> <br>
+            <font face="Helvetica" color="#FF0000">value</font></th>
+          <th><font face="Helvetica" color="#FF0000">Description</font></th>
+        </tr>
+        <tr> 
+          <td><b><font face="Courier New,Courier" size="-1">expression</font></b></td>
+          <td> 
+            <p>yes</p>
+          </td>
+          <td>&nbsp; </td>
+          <td> 
+            <p>The expression to evaluate.</p>
+          </td>
+        </tr>
+      </table>
+      <p>Example:</p>
+      <pre><font face="Courier New">&lt;tt:notNull expression=&quot;&lt;%= myObject %&gt;&quot;&gt;
+  myObject exists.
+&lt;/tt:notNull&gt;
+      </font></pre>
+      <hr>
+      
+  </tr>
+
+</table>
+
+</body>
+</html>
+ 

@@ -1,0 +1,349 @@
+<?xml version='1.0'?>
+<kawaproject timestamp="Fri Nov 09 06:12:02 2001">
+<versioninfo>
+<documentversion>
+<major>"0"</major>
+<minor>"1"</minor>
+</documentversion>
+<productversion>
+<value>"121"</value>
+</productversion>
+</versioninfo>
+<path>"E:\So-netM3\Development_Phase\CVS_src\java\jp\ne\sonet\mrkun\taglib\"</path>
+<classpaths>
+<classpath enabled="1">
+<value>"D:\weblogic\classes\"</value>
+</classpath>
+<classpath enabled="1">
+<value>"D:\weblogic\lib\weblogicaux.jar"</value>
+</classpath>
+<classpath enabled="1">
+<value>"D:\weblogic\myserver\serverclasses\"</value>
+</classpath>
+<classpath enabled="1">
+<value>"D:\weblogic\myserver\ejbclasses\"</value>
+</classpath>
+<classpath enabled="1">
+<value>"D:\weblogic\myserver\servletclasses\"</value>
+</classpath>
+</classpaths>
+<profile>
+<name>"Profile 1"</name>
+</profile>
+<runfile>
+</runfile>
+<items>
+<folder>
+<name>"v2.taglib"</name>
+<relativepath>"E:\So-netM3\Development_Phase\CVS_src\java\jp\ne\sonet\mrkun\taglib\v2.taglib.kpx"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+<virtualfolder>
+<name>"condition"</name>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"condition\ConditionTag.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"condition\IfTag.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"condition\IsEmptyTag.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"1"</dirty>
+<relativepath>"condition\IsEntitledTag.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"1"</dirty>
+<relativepath>"condition\IsLoggedInTag.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"condition\IsNullTag.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"condition\NotEmptyTag.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"1"</dirty>
+<relativepath>"condition\NotLoggedInTag.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"condition\NotNullTag.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+</virtualfolder>
+<virtualfolder>
+<name>"date"</name>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"date\DateTag.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+</virtualfolder>
+<virtualfolder>
+<name>"redirect"</name>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"redirect\ContentRedirector.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+</virtualfolder>
+<virtualfolder>
+<name>"format"</name>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"format\DateFormatTag.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"format\DecimalFormatTag.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"format\MessageFormatTag.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+</virtualfolder>
+<virtualfolder>
+<name>"iterate"</name>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"iterate\IterateTag.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"iterate\IterateTagExtraInfo.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"iterate\LoopTag.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"iterate\LoopTagExtraInfo.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+</virtualfolder>
+<virtualfolder>
+<name>"link"</name>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"link\DocLinkTag.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"link\LinkTag.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"link\URLTag.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+</virtualfolder>
+<virtualfolder>
+<name>"navbar"</name>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"navbar\LeftNavTag.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"navbar\SubNavTag.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+<file>
+<dirty>"0"</dirty>
+<relativepath>"navbar\TopNavTag.java"</relativepath>
+<scmstatus id="0">
+<userstring>""</userstring>
+<userinteger>"0"</userinteger>
+</scmstatus>
+</file>
+</virtualfolder>
+</folder>
+</items>
+<compileroptions debug="0" nowarning="0" optimize="0" verbose="0" deprecated="0">
+<outputdirvalues checked="1">
+<outputdirvalue selected="1">
+<value>"D:\WEBLOGIC\MYSERVER\SERVERCLASSES"</value>
+</outputdirvalue>
+</outputdirvalues>
+<customoptions checked="0">
+</customoptions>
+</compileroptions>
+<interpreteroptions debug="0" nogc="0" verbosegc="0" verbose="0" checksrc="0" verifieroff="0" verifieron="0" verifierremote="0">
+<commandlineargs checked="0">
+</commandlineargs>
+<runclassnames checked="0">
+<runclassname selected="0">
+<value>""</value>
+</runclassname>
+</runclassnames>
+<executedirs checked="0">
+<executedir selected="0">
+<value>""</value>
+</executedir>
+</executedirs>
+<customoptions checked="0">
+<customoption selected="3217408">
+<value>""</value>
+</customoption>
+</customoptions>
+<maxmemory checked="0">
+<value>""</value>
+</maxmemory>
+<startmemory checked="0">
+<value>""</value>
+</startmemory>
+<javacodestack checked="0">
+<value>""</value>
+</javacodestack>
+<ccodestack checked="0">
+<value>""</value>
+</ccodestack>
+<propertyvalues checked="0">
+<propertyvalue selected="0">
+<value>""</value>
+</propertyvalue>
+</propertyvalues>
+<remotedebugvalues checked="0">
+<remotedebugvalue selected="0">
+<value>""</value>
+</remotedebugvalue>
+</remotedebugvalues>
+</interpreteroptions>
+<javadocoptions version="0" type="1" author="0" noindex="0" notree="0" nodeprecated="0">
+<outputdirvalues checked="1">
+<outputdirvalue selected="1">
+<value>"E:\So-netM3\Development_Phase\CVS_src\doc\Java_doc"</value>
+</outputdirvalue>
+</outputdirvalues>
+<customoptions checked="0">
+<customoption selected="0">
+<value>""</value>
+</customoption>
+</customoptions>
+</javadocoptions>
+<rmioptions useprojectclasspath="0" debugtables="0" depend="0" debug="0" optimize="0" nowarn="0" verbose="0" nowrite="0" keepgenerated="0" show="0">
+<outputdirs checked="0">
+<outputdir selected="0">
+<value>""</value>
+</outputdir>
+</outputdirs>
+<stubdirs checked="0">
+<stubdir selected="0">
+<value>""</value>
+</stubdir>
+</stubdirs>
+<skeldirs checked="0">
+<skeldir selected="0">
+<value>""</value>
+</skeldir>
+</skeldirs>
+<customoptions checked="0">
+<customoption selected="0">
+<value>""</value>
+</customoption>
+</customoptions>
+<files>
+</files>
+</rmioptions>
+<kawajar>
+<value>""</value>
+</kawajar>
+<breakpoints>
+</breakpoints>
+</kawaproject>

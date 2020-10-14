@@ -1,0 +1,322 @@
+<?xml version="1.0"?>
+<!DOCTYPE ejb-jar 
+          PUBLIC '-//Sun Microsystems, Inc.//DTD Enterprise JavaBeans 1.1//EN' 
+                 'http://java.sun.com/j2ee/dtds/ejb-jar_1_1.dtd'>
+
+<ejb-jar>
+  <enterprise-beans>    
+    <session>
+      <ejb-name>MRManager</ejb-name>
+      <home>jp.ne.sonet.mrkun.sessionEJB.MRManagerHomeIntf</home>
+      <remote>jp.ne.sonet.mrkun.sessionEJB.MRManagerRemoteIntf</remote>
+      <ejb-class>jp.ne.sonet.mrkun.sessionEJB.MRManager</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Container</transaction-type>
+      <env-entry>
+      <env-entry-name>sql/MRInsertSentakuTorokuHistSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>
+        INSERT INTO sentaku_toroku_hist ( DR_ID, MR_ID, SEQ, DR_MEMO, SENTAKU_KBN, 
+        START_YMD, END_YMD, NAME, KINMUSAKI, MAKER_CUST_ID, MAKER_SHISETSU_ID, TARGET_RANK,
+	    SYOKUSYU, SENMON1, SENMON2, SENMON3, YAKUSYOKU, SOTSUGYO_DAIGAKU, SOTSUGYO_YEAR, SYUMI,
+	    SONOTA, UPDATE_TIME ) SELECT DR_ID, MR_ID, SEQ, DR_MEMO, SENTAKU_KBN, START_YMD, SYSDATE, 
+        NAME, KINMUSAKI, MAKER_CUST_ID, MAKER_SHISETSU_ID, TARGET_RANK, SYOKUSYU, SENMON1, SENMON2,
+	    SENMON3, YAKUSYOKU, SOTSUGYO_DAIGAKU, SOTSUGYO_YEAR, SYUMI, SONOTA, UPDATE_TIME FROM 
+        sentaku_toroku WHERE dr_id = ? AND mr_id = ?
+        </env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MRLoadBannerPositionSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT sentaku_kbn FROM sentaku_toroku WHERE mr_id = ? AND dr_id = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MRDeleteSentakuTorokuSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>DELETE FROM sentaku_toroku WHERE dr_id = ? AND mr_id = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MRInsertSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>INSERT INTO (mr_id, name_kana, name, company_cd, picture_cd, password, address, zip_cd, kinmu_flg, eigyo_time_kbn, eigyo_date_kbn, eigyo_start_time, eigyo_end_time, email, cc_email1, cc_email2, cc_email3, cc_email4, tel_no, keitai_no, fax_no, bigbrother_ccemail) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, to_date(?, 'hh24:mi'), to_date(?, 'hh24:mi'), ?, ?, ?, ?, ?, ?, ?, ?, ?)</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MRSearchNameSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT mr_id, name_kana, name, company_cd, picture_cd, password, address, zip_cd, kinmu_flg, eigyo_time_kbn, eigyo_date_kbn, to_char(eigyo_start_time, 'hh24:mi') eigyo_start_time, to_char(eigyo_end_time, 'hh24:mi') eigyo_end_time, email, cc_email1, cc_email2, cc_email3, cc_email4, tel_no, keitai_no, fax_no, bigbrother_ccemail FROM MR WHERE name = ? AND delete_ymd IS NULL</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MRSearchIDSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT mr_id, name_kana, name, company_cd, picture_cd, password, address, zip_cd, kinmu_flg, eigyo_time_kbn, eigyo_date_kbn, to_char(eigyo_start_time, 'hh24:mi') eigyo_start_time, to_char(eigyo_end_time, 'hh24:mi') eigyo_end_time, email, cc_email1, cc_email2, cc_email3, cc_email4, tel_no, keitai_no, fax_no, bigbrother_ccemail,jikosyokai FROM MR WHERE mr_id = ? AND delete_ymd IS NULL</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MRSearchDRMemo</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT dr_memo FROM sentaku_toroku WHERE mr_id = ? AND dr_id = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MRSearchDRIDSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT m.mr_id, m.name_kana, m.name, m.company_cd, m.picture_cd, m.password, m.address, m.zip_cd, m.kinmu_flg, m.eigyo_time_kbn, m.eigyo_date_kbn, to_char(m.eigyo_start_time, 'hh24:mi') eigyo_start_time, to_char(m.eigyo_end_time, 'hh24:mi') eigyo_end_time, m.email, m.cc_email1, m.cc_email2, m.cc_email3, m.cc_email4, m.tel_no, m.keitai_no, m.fax_no, m.bigbrother_ccemail, m.jikosyokai FROM MR m, sentaku_toroku st WHERE m.mr_id = st.mr_id AND st.dr_id = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MRUpdateSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>UPDATE MR SET name = ?, name_kana = ?, company_cd = ?, picture_cd = ?, password = ?, address = ?, zip_cd = ?, kinmu_flg = ?, eigyo_time_kbn = ?, eigyo_date_kbn = ?, eigyo_start_time = to_date(?, 'hh24:mi'), eigyo_end_time = to_date(?, 'hh24:mi'), email = ?, cc_email1 = ?, cc_email2 = ?, cc_email3 = ?, cc_email4 = ?, tel_no = ?, keitai_no = ?, fax_no = ?, bigbrother_ccemail = ?, jikosyokai = ? WHERE mr_id = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MRDeleteSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>DELETE FROM MR WHERE mr_id = ?</env-entry-value>
+      </env-entry>
+
+      <env-entry>
+        <env-entry-name>sql/MRUpdateLoginTime</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>UPDATE MR SET previous_login_time = sysdate WHERE mr_id = ?</env-entry-value>
+      </env-entry>
+
+      <env-entry>
+        <env-entry-name>sql/MRInsertLoginLog</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>INSERT INTO loginmr (logintime,mr_id,gamen,user_agent) VALUES (sysdate,?,?,?)</env-entry-value>
+      </env-entry>
+
+      <env-entry>
+        <env-entry-name>sql/MRUpdateForwardSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>INSERT INTO MR_ForwardEmail (mrId, forwardEmailId ) VALUES (?, ?)</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MRDeleteForwardSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>DELETE FROM MR_ForwardEmail WHERE mrId = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MRLoadForwardSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT forwardEmailId FROM MR_ForwardEmail WHERE mrId = ?</env-entry-value>
+      </env-entry>
+
+      <env-entry>
+        <env-entry-name>sql/MRLoadDRISQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT dr_id FROM sentaku_toroku WHERE mr_id = ?</env-entry-value>
+      </env-entry>
+
+      <env-entry>
+        <env-entry-name>sql/CompanyInsertSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>INSERT INTO Company (company_cd, company_name, picture_cd, cd_prefix) VALUES (?, ?, ?, ?)</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/CompanySearchNameSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT c.company_cd, c.company_name, c.picture_cd, c.cd_prefix, l.url, c.wm_mail_address, c.display_ranking FROM Company c, link_lib l WHERE c.link_cd = l.link_cd (+) AND c.company_name = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/CompanySearchIDSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT c.company_cd, c.company_name, c.picture_cd, c.cd_prefix, l.url, c.wm_mail_address, c.display_ranking FROM Company c, link_lib l WHERE c.link_cd = l.link_cd (+) AND c.company_cd = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/CompanyUpdateSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>UPDATE Company SET company_name = ?, picture_cd = ?, cd_prefix = ? WHERE company_cd = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/CompanyDeleteSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>DELETE FROM FROM Company WHERE company_cd = ?</env-entry-value>
+      </env-entry>
+
+      <env-entry>
+        <env-entry-name>sql/WebImageInsertSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>INSERT INTO catch_picture (picture_cd, picture_name, picture_type, jikosyokai, url, content) VALUES (?, ?, ?, ?, ?, ?)</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/WebImageSearchNameSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT picture_cd, picture_name, picture_type, jikosyokai, picture, content FROM WebImage WHERE picture_name = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/WebImageSearchIDSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT picture_cd, picture_name, picture_type, jikosyokai, picture, content FROM catch_picture WHERE picture_cd = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/WebImageSearchMRIDSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT picture_cd, picture_name, picture_type, jikosyokai, picture, content FROM catch_picture WHERE delete_ymd is null AND mr_id = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/WebImageUpdateSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>UPDATE catch_picture SET picture_name = ?, picture_type = ?, jikosyokai = ?, url = ?, content = ? WHERE picture_cd = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/WebImageDeleteSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>DELETE FROM catch_picture WHERE picture_cd = ?</env-entry-value>
+      </env-entry>
+
+      <env-entry>
+        <env-entry-name>sql/EmailContactInsertSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>INSERT INTO EmailContact (emailContactId, name, emailAddress) VALUES (?, ?, ?)</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/EmailContactSearchNameSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT emailContactId, name, emailAddress FROM EmailContact WHERE name = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/EmailContactSearchIDSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT emailContactId, name, emailAddress FROM EmailContact WHERE emailContactId = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/EmailContactUpdateSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>UPDATE EmailContact SET name = ?, emailAddress = ? WHERE emailContactId = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/EmailContactDeleteSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>DELETE FROM EmailContact WHERE emailContactId = ?</env-entry-value>
+      </env-entry>
+
+      <env-entry>
+        <env-entry-name>sql/DRInformationInsertSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>INSERT INTO DRInformation (mr_id, dr_id, name, kinmusaki, maker_cust_id, target_rank, syokusyu, senmon1, yakusyoku, sotsugyo_daigaku, syumi, sotsugyo_daigaku, sonota, maker_shitsetsu_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/DRInformationSearchIDSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT dr_id, name, kinmusaki, maker_cust_id, target_rank, syokusyu, senmon1, yakusyoku, sotsugyo_daigaku, syumi, sotsugyo_year, sonota, maker_shisetsu_id, mr_id FROM sentaku_toroku WHERE dr_id = ? AND mr_id = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/DRInformationSearchMRSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT dr_id, name, kinmusaki, maker_cust_id, target_rank, syokusyu, senmon1, yakusyoku, sotsugyo_daigaku, syumi, sotsugyo_year, sonota, maker_shisetsu_id, mr_id FROM sentaku_toroku WHERE mr_id = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/DRInformationUpdateSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>UPDATE sentaku_toroku SET name = ?, kinmusaki = ?, maker_cust_id = ?, target_rank = ?, syokusyu = ?, senmon1 = ?, yakusyoku = ?, sotsugyo_daigaku = ?, syumi = ?, sotsugyo_year = ?, sonota = ?, maker_shisetsu_id = ? WHERE dr_id = ? AND mr_id = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/DRInformationDeleteSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>DELETE FROM sentaku_toroku WHERE dr_id = ? AND mr_id = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/ImportanceSearchSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT action.target_rank, action.target_name FROM action, mr WHERE action.company_cd = mr.company_cd AND action.target_rank = ? AND mr.mr_id = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/ImportanceListSearchSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT target_rank,target_name FROM action WHERE company_cd = ?</env-entry-value>
+      </env-entry>
+
+      <env-entry>
+        <env-entry-name>sql/MRLoadMRProfileFastSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>
+SELECT  m.mr_id, m.name, m.name_kana, m.company_cd, m.picture_cd, m.password, m.address, 
+ m.zip_cd, m.kinmu_flg, m.eigyo_time_kbn, m.eigyo_date_kbn, 
+ to_char(m.eigyo_start_time, 'hh24:mi') eigyo_start_time, 
+ to_char(m.eigyo_end_time, 'hh24:mi') eigyo_end_time, 
+ m.email, m.cc_email1, m.cc_email2, m.cc_email3, m.cc_email4, m.tel_no, 
+ m.keitai_no, m.fax_no, m.bigbrother_ccemail, m.jikosyokai, st.sentaku_kbn,
+ max(mess.message_header_id) unread_edetail_id, 
+ count(*) unread_edetail_count,
+ substr(max(mess.idplustitle), length(max(mess.message_header_id)) + 1) unread_edetail_title,
+ to_date(substr(max(mess.idplussentdate), length(max(mess.message_header_id)) + 1), 'dd-mon-yyyy hh24:mi:ss') unread_edetail_sent_date
+FROM  mr m, 
+ sentaku_toroku st, 
+ (
+  SELECT 
+   h.message_header_id,
+   h.to_userid dr_id, 
+   h.from_userid mr_id,
+   h.message_header_id || b.title idplustitle,
+   h.message_header_id || to_char(h.receive_time, 'dd-mon-yyyy hh24:mi:ss') idplussentdate
+  FROM  message_header h, message_body b
+  WHERE  h.message_id = b.message_id
+  AND h.receive_status = '1'
+  AND h.to_userid = ?
+  AND h.message_kbn IN ('1', '4')
+  AND h.receive_timed is NULL
+  AND  ( (b.yuko_kigen is NULL) OR (b.yuko_kigen >= trunc(SYSDATE)) ) 
+ ) mess
+WHERE  m.mr_id = st.mr_id 
+AND  mess.dr_id (+) = st.dr_id 
+AND  mess.mr_id (+) = st.mr_id
+AND  st.dr_id = ?
+GROUP BY
+ m.mr_id, m.name_kana, m.name, m.company_cd, m.picture_cd, m.password, m.address, 
+ m.zip_cd, m.kinmu_flg, m.eigyo_time_kbn, m.eigyo_date_kbn, 
+ to_char(m.eigyo_start_time, 'hh24:mi'), 
+ to_char(m.eigyo_end_time, 'hh24:mi'), 
+ m.email, m.cc_email1, m.cc_email2, m.cc_email3, m.cc_email4, m.tel_no, 
+ m.keitai_no, m.fax_no, m.bigbrother_ccemail, m.jikosyokai, st.sentaku_kbn</env-entry-value>
+      </env-entry>
+
+      <env-entry>
+        <env-entry-name>sql/MRLoadDRInformationFastSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT 	st.dr_id, st.name, 
+	st.kinmusaki, st.maker_cust_id, st.target_rank, 
+	st.syokusyu, st.senmon1, st.yakusyoku, st.sotsugyo_daigaku, st.syumi, 
+	st.sotsugyo_year, st.sonota, st.maker_shisetsu_id, st.mr_id, 
+	sum(decode(nvl(contact_id, 'null'), 'null', 0, 1)) contact_count,
+	sum(decode(nvl(edetail_id, 'null'), 'null', 0, 1)) edetail_count,
+	max(contact_id) contact_id,	
+	max(edetail_id) edetail_id
+FROM 	sentaku_toroku st,
+	(
+	 SELECT	decode(h.message_kbn, 1, h.message_header_id, null) edetail_id,
+	 	decode(h.message_kbn, 2, h.message_header_id, null) contact_id,
+		DECODE(H.MESSAGE_KBN,1,H.TO_USERID,FROM_USERID) dr_id,
+		DECODE(H.MESSAGE_KBN,1,H.FROM_USERID,TO_USERID) mr_id
+	 FROM 	message_header h, message_body b
+	 WHERE	h.message_id = b.message_id
+	 AND	h.receive_timed is null
+	 AND	DECODE(H.MESSAGE_KBN,1,H.FROM_USERID,TO_USERID) = ?
+	 AND	DECODE(H.MESSAGE_KBN,1,SEND_STATUS,RECEIVE_STATUS) = 1
+	 AND	((b.yuko_kigen is null) OR (decode(h.message_kbn, 1, b.yuko_kigen, sysdate + 1) > to_date(to_char(sysdate, 'dd-mon-yyyy'), 'dd-mon-yyyy')))
+	 AND	h.message_kbn IN ('1', '2')
+	) mess
+WHERE 	st.mr_id = ?
+AND	st.mr_id = mess.mr_id (+)
+AND	st.dr_id = mess.dr_id (+)
+GROUP BY
+	st.dr_id, st.name, st.kinmusaki, st.maker_cust_id, st.target_rank, 
+	st.syokusyu, st.senmon1, st.yakusyoku, st.sotsugyo_daigaku, st.syumi, 
+	st.sotsugyo_year, st.sonota, st.maker_shisetsu_id, st.mr_id</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MRLoadDRInformationEmuzoSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT	st.dr_id, st.name, st.kinmusaki, st.maker_cust_id, st.target_rank, st.syokusyu, st.senmon1, st.yakusyoku, st.sotsugyo_daigaku, st.syumi, st.sotsugyo_year, st.sonota, st.maker_shisetsu_id, st.mr_id FROM sentaku_toroku st WHERE st.mr_id = ?</env-entry-value>
+      </env-entry>
+    </session>
+  </enterprise-beans>
+
+  <assembly-descriptor>
+    <container-transaction>
+      <method>
+        <ejb-name>MRManager</ejb-name>
+        <method-name>*</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+  </assembly-descriptor>
+
+</ejb-jar>

@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE ejb-jar 
+          PUBLIC '-//Sun Microsystems, Inc.//DTD Enterprise JavaBeans 1.1//EN' 
+                 'http://java.sun.com/j2ee/dtds/ejb-jar_1_1.dtd'>
+
+<ejb-jar>
+  <enterprise-beans>    
+    <session>
+      <ejb-name>AssetManager</ejb-name>
+      <home>jp.ne.sonet.mrkun.sessionEJB.AssetManagerHomeIntf</home>
+      <remote>jp.ne.sonet.mrkun.sessionEJB.AssetManagerRemoteIntf</remote>
+      <ejb-class>jp.ne.sonet.mrkun.sessionEJB.AssetManager</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Container</transaction-type>      
+      <env-entry>
+        <env-entry-name>sql/LinkCategorySearchSQL</env-entry-name> 
+        <env-entry-type>java.lang.String</env-entry-type> 
+        <env-entry-value>SELECT link_bunrui_cd, bunrui_name, company_cd FROM link_bunrui WHERE company_cd = ? AND delete_ymd is null ORDER BY link_bunrui_cd</env-entry-value> 
+      </env-entry>
+      <env-entry>
+       	<env-entry-name>sql/LinkListSearchSQL</env-entry-name> 
+        <env-entry-type>java.lang.String</env-entry-type> 
+        <env-entry-value>SELECT link_cd, honbun_text, link_bunrui_cd, url, description FROM link_lib WHERE company_cd = ? AND link_bunrui_cd = ? AND delete_ymd is null ORDER BY link_cd</env-entry-value> 
+      </env-entry>
+      <env-entry>
+       	<env-entry-name>sql/LinkSearchSQL</env-entry-name> 
+        <env-entry-type>java.lang.String</env-entry-type> 
+        <env-entry-value>SELECT link_cd, honbun_text, link_bunrui_cd, url, description FROM link_lib WHERE link_cd = ?</env-entry-value> 
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/TemplateCategorySearchSQL</env-entry-name> 
+        <env-entry-type>java.lang.String</env-entry-type> 
+        <env-entry-value>SELECT teikeibun_bunrui_cd, bunrui_name, company_cd FROM teikeibun_bunrui WHERE company_cd = ? AND delete_ymd is null</env-entry-value> 
+      </env-entry>
+      <env-entry>
+       	<env-entry-name>sql/TemplateListSearchSQL</env-entry-name> 
+        <env-entry-type>java.lang.String</env-entry-type> 
+        <env-entry-value>SELECT teikeibun_cd, title, honbun, teikeibun_bunrui_cd, description FROM teikeibun_lib WHERE company_cd = ? AND teikeibun_bunrui_cd = ? AND delete_ymd is null</env-entry-value> 
+      </env-entry>
+      <env-entry>
+       	<env-entry-name>sql/TemplateSearchSQL</env-entry-name> 
+        <env-entry-type>java.lang.String</env-entry-type> 
+        <env-entry-value>SELECT teikeibun_cd, title, honbun, teikeibun_bunrui_cd, description FROM teikeibun_lib WHERE teikeibun_cd = ? AND delete_ymd is null</env-entry-value> 
+      </env-entry>
+      <env-entry>
+       	<env-entry-name>sql/ConstantSearchIDSQL</env-entry-name> 
+        <env-entry-type>java.lang.String</env-entry-type> 
+        <env-entry-value>SELECT constant_cd, name, naiyo1, naiyo2, naiyo3 FROM constant_master WHERE constant_cd = ?</env-entry-value> 
+      </env-entry>
+      <env-entry>
+       	<env-entry-name>sql/CategorySearchIDSQL</env-entry-name> 
+        <env-entry-type>java.lang.String</env-entry-type> 
+        <env-entry-value>SELECT call_naiyo_cd, call_naiyo FROM call_naiyo WHERE call_naiyo_cd = ? AND delete_ymd IS NULL</env-entry-value> 
+      </env-entry>
+      <env-entry>
+       	<env-entry-name>sql/CategorySearchCompanySQL</env-entry-name> 
+        <env-entry-type>java.lang.String</env-entry-type> 
+        <env-entry-value>SELECT call_naiyo_cd, call_naiyo FROM call_naiyo WHERE company_cd = ? AND delete_ymd IS NULL ORDER BY call_naiyo_cd desc</env-entry-value> 
+      </env-entry>
+      <env-entry>
+       	<env-entry-name>sql/MedicalCertificationSearchSQL</env-entry-name> 
+        <env-entry-type>java.lang.String</env-entry-type> 
+        <env-entry-value>SELECT shikaku_cd, shikaku_name, memo FROM shikaku ORDER BY shikaku_cd</env-entry-value> 
+      </env-entry>
+    </session>
+  </enterprise-beans>
+  <assembly-descriptor>
+    <container-transaction>
+      <method>
+        <ejb-name>AssetManager</ejb-name>
+        <method-name>*</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+  </assembly-descriptor>
+
+</ejb-jar>

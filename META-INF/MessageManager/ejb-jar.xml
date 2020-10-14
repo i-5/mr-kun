@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<!DOCTYPE ejb-jar 
+          PUBLIC '-//Sun Microsystems, Inc.//DTD Enterprise JavaBeans 1.1//EN' 
+                 'http://java.sun.com/j2ee/dtds/ejb-jar_1_1.dtd'>
+
+<ejb-jar>
+  <enterprise-beans>    
+    <session>
+      <ejb-name>MessageManager</ejb-name>
+      <home>jp.ne.sonet.mrkun.sessionEJB.MessageManagerHomeIntf</home>
+      <remote>jp.ne.sonet.mrkun.sessionEJB.MessageManagerRemoteIntf</remote>
+      <ejb-class>jp.ne.sonet.mrkun.sessionEJB.MessageManager</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Container</transaction-type>      
+      <env-entry>
+        <env-entry-name>sql/MessageSearchMRNewMessageSQLHead</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT from_userid, to_userid, COUNT(message_header_id) as messageCount FROM message_header WHERE message_kbn = '2' AND receive_timed IS NULL AND to_userid = ? AND from_userid in (</env-entry-value>
+      </env-entry> 
+      <env-entry>
+        <env-entry-name>sql/MessageSearchMRNewMessageSQLEnd</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>) GROUP BY from_userid, to_userid</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MessageSearchDRUnreadNewMessageSQLHead</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT from_userid, to_userid, COUNT(message_header_id) as messageCount FROM message_header WHERE message_kbn = '1' AND receive_timed IS NULL AND from_userid = ? AND to_userid in (</env-entry-value>
+      </env-entry> 
+      <env-entry>
+        <env-entry-name>sql/MessageSearchDRUnreadNewMessageSQLEnd</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>) GROUP BY from_userid, to_userid</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MessageSearchIDSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT h.message_header_id, h.from_userid, h.to_userid, b.title, b.message_honbun, h.receive_time, h.receive_timed, h.send_delete_time, h.receive_delete_time, h.send_torikeshi_time, b.call_naiyo_cd, b.picture_cd FROM message_header h, message_body b WHERE h.message_header_id = ? AND h.message_id = b.message_id</env-entry-value>
+      </env-entry> 	    
+      <env-entry>
+        <env-entry-name>sql/MessageMRDRCountSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT count(message_header_id) FROM message_header WHERE message_kbn = '2' AND receive_timed IS NULL AND to_userid = ? AND from_userid = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MessagePagesSentSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT h.message_header_id, h.from_userid, h.to_userid, b.title, b.message_honbun, h.receive_time, h.receive_timed, h.send_delete_time, h.receive_delete_time, h.send_torikeshi_time, b.call_naiyo_cd, b.picture_cd FROM message_header h, message_body b WHERE h.message_kbn = '2' AND h.message_id = b.message_id AND h.from_userid = ? AND h.to_userid = ? ORDER BY h.receive_time</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MessagePagesReceivedSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT h.message_header_id, h.from_userid, h.to_userid, b.title, b.message_honbun, h.receive_time, h.receive_timed, h.send_delete_time, h.receive_delete_time, h.send_torikeshi_time, b.call_naiyo_cd, b.picture_cd FROM message_header h, message_body b WHERE h.message_kbn = '2' AND h.message_id = b.message_id AND h.to_userid = ? AND h.from_userid = ? ORDER BY h.receive_timed</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MessagePagesDateSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT h.message_header_id, h.from_userid, h.to_userid, b.title, b.message_honbun, h.receive_time, h.receive_timed, h.send_delete_time, h.receive_delete_time, h.send_torikeshi_time, b.call_naiyo_cd, b.picture_cd FROM message_header h, message_body b WHERE h.message_kbn = '2' AND h.message_id = b.message_id AND h.to_userid IN (?,?) AND h.from_userid IN (?, ?) ORDER BY h.receive_timed desc</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MessagePagesSubjectSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT h.message_header_id, h.from_userid, h.to_userid, b.title, b.message_honbun, h.receive_time, h.receive_timed, h.send_delete_time, h.receive_delete_time, h.send_torikeshi_time, b.call_naiyo_cd, b.picture_cd FROM message_header h, message_body b WHERE h.message_kbn = '2' AND h.message_id = b.message_id AND h.to_userid IN (?,?) AND h.from_userid IN (?, ?) ORDER BY b.title, h.receive_timed desc</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MessageSearchResourcesSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT link_cd FROM message_link WHERE message_id = ? </env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MessageSearchAttachmentsSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT seq, attach_file, file_name FROM attach_file WHERE message_id = ? </env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/WebImageSearchIDSQL</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT picture_cd, picture_name, picture_type, jikosyokai, picture FROM catch_picture WHERE picture_cd = ?</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MessageGroupSearchSQLPre</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>SELECT b.message_id, h.from_userid, Null, b.title, Null, Null, h.receive_timed, Null, Null, Null, Null, Null FROM message_header AS h, message_body AS b WHERE (h.from_userid = ? OR h.to_userid = ?) AND b.message_id IN (</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MessageGroupSearchSQLPost</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>) GROUP BY b.message_id, h.from_userid, b.title, h.receive_timed ORDER BY h.receive_timed desc</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MessageGroupDeleteSQLPre</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>DELETE FROM message_header WHERE (from_userid = ? OR to_userid = ?) AND message_id IN (</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>sql/MessageGroupDeleteSQLPost</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>)</env-entry-value>
+      </env-entry>
+    </session>
+  </enterprise-beans>
+  <assembly-descriptor>
+    <container-transaction>
+      <method>
+        <ejb-name>MessageManager</ejb-name>
+        <method-name>*</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+  </assembly-descriptor>
+
+</ejb-jar>

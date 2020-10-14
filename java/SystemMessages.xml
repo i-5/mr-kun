@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+
+<messages language="japanese">
+
+  <message key="dr_outOfTimeMsg">
+
+    <english>One or more MRs are currently out of the office. Continue?</english>
+
+    <japanese>現在、営業時間外のMRがいますが送信しますか?</japanese>
+
+  </message>
+
+  <message key="mr51_noBodyFound"><!-- 未使用 -->
+
+    <english>There was no body found</english>
+
+    <japanese>入力されていません。</japanese>
+
+  </message>
+
+  <message key="system_notAvailable">
+
+    <english>System is currently not available, please try again later.</english>
+
+    <japanese>現在、システムが利用できない状態にあります。後でもう一度試してください。</japanese>
+
+  </message>
+
+  <message key="system_m3DefaultEmailAddess">
+
+    <english>m3center@so-net.ne.jp</english>
+
+    <japanese>m3center@so-net.ne.jp</japanese>
+
+  </message>
+
+  <message key="system_m3DebugEmailAddess">
+
+    <english>debug@so-netm3.co.jp</english>
+
+    <japanese>debug@so-netm3.co.jp</japanese>
+
+  </message>
+
+  <message key="system_sessionTimeout">
+
+    <english>Session timeout or invalid. Please login again.</english> 
+
+    <japanese>タイムアウトが発生しました。もう一度ログインしなおしてください。</japanese>
+
+  </message>
+
+  <message key="dr_login_not_id">
+
+    <english>Cookie is disable, please turn on the cookie in browser setting.</english> 
+
+    <japanese>Cookieの設定がないため、エラーが発生しました。ブラウザのCookieの設定を有効にしてください。</japanese>
+
+  </message>
+
+  <message key="dr_Example">
+
+    <english>!! PUT English message here....</english>
+
+    <japanese>!!半角英数字で入力してください。</japanese>
+
+  </message>
+
+  <message key="dr_deleteMRBodyLine">
+
+    <english>MR名簿から削除されました。</english>
+
+    <japanese>MR名簿から削除されました。</japanese>
+
+  </message>
+
+  <message key="dr_deleteMRClientLine">
+
+    <english>顧客：</english>
+    
+    <japanese>顧客：</japanese>
+
+  </message>
+
+  <message key="dr_deleteMRSubjectLine">
+
+    <english>MR削除通知：</english>
+
+    <japanese>MR削除通知：</japanese>
+
+  </message>
+
+  <message key="dr_deleteMRMRKUN">
+
+    <english>MR君</english>
+
+    <japanese>MR君</japanese>
+
+  </message>
+
+  <message key="dr_newMRRegistrationBody">
+    <english>[#DOCTOR_NAME]
+[#DOCTOR_HOSPITAL_NAME]
+新規にMR登録されました。
+顧客：[#DOCTOR_NAME] [#DOCTOR_HOSPITAL_NAME]
+[#DOCTOR_SYSTEM_CODE]</english>
+    <japanese>[#DOCTOR_NAME]
+[#DOCTOR_HOSPITAL_NAME]
+新規にMR登録されました。
+顧客：[#DOCTOR_NAME] [#DOCTOR_HOSPITAL_NAME]
+[#DOCTOR_SYSTEM_CODE]</japanese>
+  </message>
+
+  <message key="dr_OpenedNewEDetailBody">
+    <english>[#DOCTOR_NAME]
+[#DOCTOR_HOSPITAL_NAME]
+[#MESSAGE_SUBJECT]が開封されました。</english>
+    <japanese>[#DOCTOR_NAME]
+[#DOCTOR_HOSPITAL_NAME]
+[#MESSAGE_SUBJECT]が開封されました。</japanese>
+  </message>
+
+  <message key="dr_OpenedNewEDetailSubject">
+    <english>開封通知：[#DOCTOR_NAME]</english>
+    <japanese>開封通知：[#DOCTOR_NAME]</japanese>
+  </message>
+
+  <message key="dr_newMRRegistrationSubject">
+    <english>MR新規登録通知：[#DOCTOR_NAME]　[#DOCTOR_HOSPITAL_NAME]</english>
+    <japanese>MR新規登録通知：[#DOCTOR_NAME]　[#DOCTOR_HOSPITAL_NAME]</japanese>
+  </message>
+
+  <message key="dr_newMRRegistrationSender">
+    <english>MR君</english>
+    <japanese>MR君</japanese>
+  </message>
+
+  <message key="dr_OpenedNewEDetailSender">
+    <english>MR君</english>
+    <japanese>MR君</japanese>
+  </message>
+
+  <!-- ValidationMessages -->
+  <message key="dr_noMessageBodySupplied">
+    <english>No message body supplied</english>
+	<japanese>メッセージ本文が入力されていません。</japanese>
+  </message>
+
+  <message key="dr_noPlainTextBodySupplied">
+    <english>No plain text message body supplied</english>
+	<japanese>プレーンテキストは表示されません。</japanese>
+  </message>
+
+  <message key="dr_noMessageTitleSupplied">
+    <english>No message title supplied</english>
+	<japanese>メッセージのタイトルが入力されていません。</japanese>
+  </message>
+
+  <message key="dr_noMatchingMRFound">
+    <english>No MR was found with that Id</english>
+	<japanese>そのMR-IDに該当するMRは存在しません。</japanese>
+  </message>
+
+  <message key="dr_alreadyHaveThisMR">
+    <english>You already have this MR in your list</english>
+	<japanese>そのMRはすでに登録されています。</japanese>
+  </message>
+
+  <message key="dr_emptyEnqueteAnswer">
+    <english>An answer to an enquete question was empty</english>
+	<japanese>回答されていない項目があります。</japanese>
+  </message>
+
+  <message key="dr_entryNameEmpty">
+    <english>The name field was left empty.</english>
+	<japanese>氏名欄が入力されていません。</japanese>
+  </message>
+
+  <message key="dr_entryNameOver">
+    <english>The name field was longer than the maximum length (20 characters). </english>
+	<japanese>氏名欄が入力制限文字数(２０文字)を超えています。</japanese>
+  </message>
+
+  <message key="dr_entryKanaNameEmpty">
+    <english>The kana name field was left empty.</english>
+	<japanese>ふりがなが入力されていません。</japanese>
+  </message>
+
+  <message key="dr_entryKanaNameOver">
+    <english>The kana name field was longer than the maximum length (20 characters). </english>
+	<japanese>ふりがなが入力制限文字数(２０文字)を超えています。</japanese>
+  </message>
+
+  <message key="dr_entryHospitalEmpty">
+    <english>The hospital field was left empty.</english>
+	<japanese>勤務先が入力されていません。</japanese>
+  </message>
+
+  <message key="dr_entryHospitalOver">
+    <english>The hospital field was longer than the maximum length (32 characters). </english>
+	<japanese>勤務先が入力制限文字数(３２文字)を超えています。</japanese>
+  </message>
+
+  <message key="dr_entryEmailEmpty">
+    <english>The email field was left empty.</english>
+	<japanese>電子メールアドレスが入力されていません。</japanese>
+  </message>
+
+  <message key="dr_entryEmailOver">
+    <english>The email field was longer than the maximum length (64 characters). </english>
+	<japanese>電子メールアドレスが入力制限文字数(６４文字)を超えています。</japanese>
+  </message>
+
+  <message key="dr_entryRemailEmpty">
+    <english>The second email field was left empty.</english>
+	<japanese>確認用の電子メールアドレスが入力されていません。</japanese>
+  </message>
+  
+   <message key="dr_NoDeleteMR">
+    <english>No MRs have been checked for deletion.</english>
+	<japanese>削除するＭＲが選択されていません。</japanese>
+  </message>
+
+  <message key="dr_entryEmailRemailDifferent">
+    <english>Email and ReEmail are not in agreement.</english>
+	<japanese>電子メールアドレスが一致しません。</japanese>
+  </message>
+
+  <message key="dr_initAddNoMatchingMRFound">
+    <english>No MR was found with that Id</english>
+	<japanese>そのMR-IDに該当するMRは存在しません。</japanese>
+  </message>
+
+  <message key="dr_initAddAlreadyHaveThisMR">
+    <english>You already have this MR in your list</english>
+	<japanese>そのMRはすでに登録されています。</japanese>
+  </message>
+
+  <message key="dr_initProfileCertificationEmpty">
+    <english>The certification field was left empty.</english>
+	<japanese>医療資格が入力されていません。</japanese>
+  </message>
+
+  <message key="dr_initProfileSpecialtyEmpty">
+    <english>The Specialty field was left empty.</english>
+	<japanese>診療科が入力されていません。</japanese>
+  </message>
+
+  <message key="dr_profileKanjiNameEmpty">
+    <english>The kanji name field was left empty.</english>
+	<japanese>氏名が入力されていません。</japanese>
+  </message>
+
+  <message key="dr_profileKanaNameEmpty">
+    <english>The kana name field was left empty.</english>
+	<japanese>ふりがなが入力されていません。</japanese>
+  </message>
+
+  <message key="dr_profileHospitalEmpty">
+    <english>The hospital field was left empty.</english>
+	<japanese>勤務先が入力されていません。</japanese>
+  </message>
+
+  <message key="dr_profileCertificationEmpty">
+    <english>The certification field was left empty.</english>
+	<japanese>医療資格が選択されていません。</japanese>
+  </message>
+
+  <message key="dr_profileWorkAreaEmpty">
+    <english>The work area field was left empty.</english>
+	<japanese>勤務地域が選択されていません。</japanese>
+  </message>
+
+  <message key="dr_profileUsageAreaEmpty">
+    <english>The usage area field was left empty.</english>
+	<japanese>主なＭＲ君利用場所が選択されていません。</japanese>
+  </message>
+
+  <message key="dr_profileNetworkEnvEmpty">
+    <english>The network environment field was left empty.</english>
+	<japanese>ネットワーク環境が選択されていません。</japanese>
+  </message>
+
+  <message key="dr_profileEmailEmpty">
+    <english>The email field was left empty.</english>
+	<japanese>電子メールアドレスが入力されていません。</japanese>
+  </message>
+
+  <message key="dr_profileEmailInvalid">
+    <english>The email supplied was invalid.</english>
+	<japanese>その電子メールアドレスは無効です。</japanese>
+  </message>
+
+  <message key="mr_profileCompanyPhoneNotSupplied">
+    <english>The company phone field was left empty.</english>
+	<japanese>会社の電話番号が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_profileCellularPhoneNotSupplied">
+    <english>The cellular phone field was left empty.</english>
+	<japanese>携帯電話番号が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_profileFaxPhoneNotSupplied">
+    <english>The fax phone field was left empty.</english>
+	<japanese>FAX番号が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_profileEmailFieldNotSupplied">
+    <english>The email field was left empty.</english>
+	<japanese>電子メールアドレスが入力されていません。</japanese>
+  </message>
+
+  <message key="mr_profileAreaCodeNotSupplied">
+    <english>The area code field was left empty.</english>
+	<japanese>会社住所が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_profileLocationNotSupplied">
+    <english>The location field was left empty.</english>
+	<japanese>営業時間が設定されていません。</japanese>
+  </message>
+
+  <message key="mr_profileForwardEmail1NotSupplied">
+    <english>The forward email 1 field was not supplied.</english>
+	<japanese>受信連絡をCCするeメールアドレス(1)が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_profileForwardEmail2NotSupplied">
+    <english>The forward email 2 field was not supplied.</english>
+	<japanese>受信連絡をCCするeメールアドレス(2)が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_profileForwardEmail3NotSupplied">
+    <english>The forward email 3 field was not supplied.</english>
+	<japanese>受信連絡をCCするeメールアドレス(3)が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_profileForwardEmail4NotSupplied">
+    <english>The forward email 4 field was not supplied.</english>
+	<japanese>受信連絡をCCするeメールアドレス(4)が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_profileCcEmailNotSupplied">
+    <english>The CC email field was left empty.</english>
+	<japanese>送信eディテール転送先が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_profileOpenHoursNotSupplied">
+    <english>The open hours field was left empty.</english>
+	<japanese>営業開始時間(時間)が設定されていません。</japanese>
+  </message>
+
+  <message key="mr_profileOpenTimeNotSupplied">
+    <english>The open time field was left empty.</english>
+	<japanese>営業開始時間(分)が設定されていません。</japanese>
+  </message>
+
+  <message key="mr_profileCloseTimeNotSupplied">
+    <english>The close time field was left empty.</english>
+	<japanese>営業終了時間が設定されていません。</japanese>
+  </message>
+
+  <message key="mr_profilePassword1NotSupplied">
+    <english>The password 1 field was left empty.</english>
+	<japanese>新パスワードが入力されていません。</japanese>
+  </message>
+
+  <message key="mr_profilePassword2NotSupplied">
+    <english>The password 2 field was left empty.</english>
+	<japanese>パスワード（再度入力）が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_profileEmailInvalid">
+    <english>The email supplied was invalid.</english>
+	<japanese>その電子メールアドレスは無効です。</japanese>
+  </message>
+
+  <message key="mr_profileForwardEmail1Invalid">
+    <english>The forward email 1 supplied was invalid.</english>
+	<japanese>メッセージ転送先に指定したその電子メールアドレス(1)は無効です。</japanese>
+  </message>
+
+  <message key="mr_profileForwardEmail2Invalid">
+    <english>The forward email 2 supplied was invalid.</english>
+	<japanese>メッセージ転送先に指定したその電子メールアドレス(2)は無効です。</japanese>
+  </message>
+
+  <message key="mr_profileForwardEmail3Invalid">
+    <english>The forward email 3 supplied was invalid.</english>
+	<japanese>メッセージ転送先に指定したその電子メールアドレス(3)は無効です。</japanese>
+  </message>
+
+  <message key="mr_profileForwardEmail4Invalid">
+    <english>The forward email 4 supplied was invalid.</english>
+	<japanese>メッセージ転送先に指定したその電子メールアドレス(4)は無効です。</japanese>
+  </message>
+
+  <message key="mr_profileCcEmailInvalid">
+    <english>The CC email supplied was invalid.</english>
+	<japanese>入力した電子メールアドレスは無効です。</japanese>
+  </message>
+
+  <message key="mr_profilePasswordsDifferent">
+    <english>The password fields do not match.</english>
+	<japanese>入力したパスワードが一致していません。</japanese>
+  </message>
+
+  <message key="mr_profileInvalidOpenTime">
+    <english>The open time value is not within the allowed options.</english>
+	<japanese>営業開始時間が正しくありません。</japanese>
+  </message>
+
+  <message key="mr_profileInvalidCloseTime">
+    <english>The close time value is not within the allowed options.</english>
+	<japanese>営業終了時間が正しくありません。</japanese>
+  </message>
+
+  <message key="mr_profileCloseBeforeOpen">
+    <english>The closing time was before the opening time.</english>
+	<japanese>営業終了時間が、営業開始時間よりも早くなっています。</japanese>
+  </message>
+
+  <message key="mr_profileInvalidOpenCloseTimes">
+    <english>The date supplied was not in a valid time format.</english>
+	<japanese>入力された日付は無効です。</japanese>
+  </message>
+
+  <message key="mr_validationError">
+    <english>Validation error during MR save - </english>
+	<japanese>エラーが発生しました。再度やり直してください。</japanese>
+  </message>
+
+  <message key="dr_sendContactFollowup_MrKun">
+    <english>MR君</english>
+	<japanese>MR君</japanese>
+  </message>
+
+  <message key="dr_sendContactFollowup_m3center">
+    <english>m3center@so-netm3.co.jp</english>
+	<japanese>m3center@so-netm3.co.jp</japanese>
+  </message>
+
+  <message key="dr_fileTooLarge">
+    <english>The file [#FILE_NAME] was larger than the maximum allowed file size ([#FILE_MAX_SIZE] bytes).</english>
+	<japanese>添付ファイル([#FILE_NAME])の容量が規定([#FILE_MAX_SIZE] bytes)をオーバーしています。</japanese>
+  </message>
+
+  <message key="dr_tooManyFiles">
+    <english>This exceeds the maximum file count of [#MAX_FILE_COUNT].</english>
+	<japanese>添付ファイルの数が規定([#MAX_FILE_COUNT])をオーバーしています。</japanese>
+  </message>
+
+  <message key="dr_entryAlreadyRegistered">
+    <english>The user is already registered.</english>
+	<japanese>既にユーザー登録をしています。</japanese>
+  </message>
+
+  <message key="mr_fileTooLarge">
+    <english>The file [#FILE_NAME] was larger than the maximum allowed file size ([#FILE_MAX_SIZE] bytes).</english>
+	<japanese>添付ファイル([#FILE_NAME])の容量が規定([#FILE_MAX_SIZE] bytes)をオーバーしています。</japanese>
+  </message>
+
+  <message key="mr_tooManyFiles">
+    <english>This exceeds the maximum file count of [#MAX_FILE_COUNT].</english>
+	<japanese>添付ファイルの数が規定([#MAX_FILE_COUNT])をオーバーしています。</japanese>
+  </message>
+
+  <message key="mr_tooManyLinks">
+    <english>You supplied more than the maximum allowable links ([#MAX_LINK_COUNT]). Please select fewer links.</english>
+	<japanese>資料リンクの数が規定（[#MAX_LINK_COUNT]）をオーバーしています。</japanese>
+  </message>
+
+  <message key="mr_drprofNameEmpty">
+    <english>The name field was left empty.</english>
+	<japanese>顧客名が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_drprofHospitalEmpty">
+    <english>The hospital field was left empty.</english>
+	<japanese>勤務先が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_drprofCustomerIdEmpty">
+    <english>The customerId field was left empty.</english>
+	<japanese>顧客IDが入力されていません。</japanese>
+  </message>
+
+  <message key="mr_drprofHospitalIdEmpty">
+    <english>The hospitalId field was left empty.</english>
+	<japanese>施設IDが入力されていません。</japanese>
+  </message>
+
+  <message key="mr_drprofImportanceEmpty">
+    <english>The importance field was left empty.</english>
+	<japanese>重要度が選択されていません。</japanese>
+  </message>
+
+  <message key="mr_drprofDivisionEmpty">
+    <english>The field/division field was left empty.</english>
+	<japanese>職種が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_drprofSpecialtyEmpty">
+    <english>The specialty field was not supplied.</english>
+	<japanese>診療科が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_drprofPositionEmpty">
+    <english>The position field was not supplied.</english>
+	<japanese>役職が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_drprofUniversityEmpty">
+    <english>The university field was not supplied.</english>
+	<japanese>出身大学が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_drprofYearGradEmpty">
+    <english>The year of graduation field was not supplied.</english>
+	<japanese>卒業年(西暦)が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_drprofHobbyEmpty">
+    <english>The hobby field was left empty.</english>
+	<japanese>趣味の欄が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_drprofMemoEmpty">
+    <english>The memo field was left empty.</english>
+	<japanese>メモの欄が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_drprofIllegalImportanceValue">
+    <english>The importance value is not within the allowed options.</english>
+	<japanese>使用できない重要度を選択しています。</japanese>
+  </message>
+
+  <message key="mr_drprofOtherError">
+    <english>Validation error during MR save - </english>
+	<japanese>エラーが発生しました。再度やり直してください。</japanese>
+  </message>
+
+  <message key="mr_newEdetNoBodyProvided">
+    <english>No message body supplied</english>
+	<japanese>メッセージの本文が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_newEdetNoPlainBodyProvided">
+    <english>No plain text message body supplied</english>
+	<japanese>プレーンテキストは表示されません。</japanese>
+  </message>
+
+  <message key="mr_newEdetNoTitleProvided">
+    <english>No message title supplied</english>
+	<japanese>メッセージのタイトルが入力されていません。</japanese>
+  </message>
+
+  <message key="mr_newEdetNoMessageCategoryProvided">
+    <english>No message category supplied</english>
+	<japanese>eディテール分類が選択されていません。</japanese>
+  </message>
+
+  <message key="mr_newEdetNoImageProvided">
+    <english>No MR image supplied</english>
+	<japanese>貼り付ける画像が選択されていません。</japanese>
+  </message>
+
+  <message key="mr_newEdetNoExpYearProvided">
+    <english>No expiry year supplied</english>
+	<japanese>有効期限の年が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_newEdetNoExpMonthProvided">
+    <english>No expiry month supplied</english>
+	<japanese>有効期限の月が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_newEdetNoExpDayProvided">
+    <english>No expiry day supplied</english>
+	<japanese>有効期限の日が入力されていません。</japanese>
+  </message>
+
+  <message key="mr_newEdetOldExpiryProvided">
+    <english>The expiry date must be in the future.</english>
+	<japanese>有効期限は過去には設定できません。</japanese>
+  </message>
+
+  <message key="mr_newEdetInvalidExpiry">
+    <english>Invalid date specified for expiry date.</english>
+	<japanese>入力された日付は無効です。</japanese>
+  </message>
+
+  <message key="mr_JSPCompileError">
+    <english>Error compiling the JSP ... see log for details</english>
+	<japanese>エラーが発生しました。再度ＭＲ君へログインしてください。</japanese>
+  </message>
+  <message key="mr_newEDetailBigBrotherSubject">
+    <japanese>MR君メッセージ転送：[#MR_NAME]</japanese>
+  </message>
+
+  <message key="mr_newEDetailBigBrotherBody">
+    <japanese>MR君メッセージを転送します。
+
+宛先：[#MESSAGE_DATE] [#DR_NAME] [#DR_HOSPITAL]
+発信者：[#MR_NAME]
+タイトル：[#MESSAGE_TITLE]
+本文：[#MESSAGE_BODY]</japanese>
+  </message>
+
+  <message key="mr_newEDetailBigBrotherSenderName">
+    <english>MR君</english>
+	<japanese>MR君</japanese>
+  </message>
+
+  <message key="mr_newEDetailBigBrotherSenderEmail">
+    <english>m3center@so-netm3.co.jp</english>
+	<japanese>m3center@so-netm3.co.jp</japanese>
+  </message>
+
+  <message key="mr_profileAreaCodeInvalid">
+    <english>The area code you entered was invalid. Please enter an area code of the form ###-####.</english>
+	<japanese>エラーが発生しました。再度ＭＲ君へログインしてください。</japanese>
+  </message>
+
+  <message key="mr_newEdetNoRecipients">
+    <english>No recipients supplied.</english>
+    <japanese>あて先が指定されていません。</japanese>
+  </message>
+  
+  <message key="mr_hobbyExceedCharater">
+    <english>Please enter within 64 full Japanese charaters in Hobby field.</english>
+    <japanese>趣味の欄は全角６４文字以内で入力してください。</japanese>
+  </message>
+  
+  <message key="mr_drMemoExceedCharater">
+    <english>Please enter within 64 full Japanese charaters in doctor memo field.</english>
+    <japanese>メモの欄は全角６４文字以内で入力してください。</japanese>
+  </message>
+
+  <message key="mr_newEdetMessageBodyTooLong">
+    <english>Please make sure the message is no longer than 4000 characters.</english>
+    <japanese>本文の欄は４０００バイト以内で入力してください。</japanese>
+  </message>
+
+</messages>

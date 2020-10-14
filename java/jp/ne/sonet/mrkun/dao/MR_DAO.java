@@ -1,0 +1,864 @@
+
+// Copyright (c) 2001 So-net M3, Inc
+package jp.ne.sonet.mrkun.dao;
+
+import java.sql.*;
+import java.util.*;
+import javax.naming.*;
+import jp.ne.sonet.mrkun.framework.exception.*;
+import jp.ne.sonet.mrkun.valueobject.*;
+import jp.ne.sonet.mrkun.server.*;
+
+/**
+ * This class implements the persistence mechanism for the MR class.
+ *
+ * @author <a href="mailto:r-knowles@so-netM3.co.jp">Rick Knowles</a>
+<<<<<<< MR_DAO.java
+<<<<<<< MR_DAO.java
+ * @version $Id: MR_DAO.java,v 1.1.2.25 2001/09/21 08:36:11 damon Exp $
+=======
+ * @version $Id: MR_DAO.java,v 1.1.2.28 2001/10/04 06:58:41 mizuki Exp $
+>>>>>>> 1.1.2.28
+=======
+ * @version $Id: MR_DAO.java,v 1.1.2.29 2001/11/05 04:55:03 mizuki Exp $
+>>>>>>> 1.1.2.29
+ */
+public class MR_DAO implements DAO_SQL
+{
+
+  final String  ADD_QUERY                    = "java:comp/env/sql/MRInsertSQL";
+  final String  SEARCH_BY_NAME_QUERY         = "java:comp/env/sql/MRSearchNameSQL";
+  final String  SEARCH_BY_ID_QUERY           = "java:comp/env/sql/MRSearchIDSQL";
+  final String  SEARCH_BY_DRID_QUERY         = "java:comp/env/sql/MRSearchDRIDSQL";
+  final String  SAVE_QUERY                   = "java:comp/env/sql/MRUpdateSQL";
+  final String  REMOVE_QUERY                 = "java:comp/env/sql/MRDeleteSQL";
+  final String  SEARCH_DR_MEMO_BY_ID_QUERY   = "java:comp/env/sql/MRSearchDRMemo";
+  final String  SAVE_MR_FORWARD              = "java:comp/env/sql/MRUpdateForwardSQL";
+  final String  SAVE_MR_DRI                  = "java:comp/env/sql/MRUpdateDRISQL";
+  final String  INSERT_SENTAKU_TOROKU_HIST   = "java:comp/env/sql/MRInsertSentakuTorokuHistSQL";                            
+  final String  DELETE_SENTAKU_TOROKU        = "java:comp/env/sql/MRDeleteSentakuTorokuSQL";
+  final String  REMOVE_MR_FORWARD            = "java:comp/env/sql/MRDeleteForwardSQL";
+  final String  REMOVE_MR_DRI                = "java:comp/env/sql/MRDeleteDRISQL";
+
+  final String  LOAD_MR_FORWARD              = "java:comp/env/sql/MRLoadForwardSQL";
+  final String  LOAD_MR_DRI                  = "java:comp/env/sql/MRLoadDRISQL";
+  final String  SEARCH_BANNER_POSITION_QUERY = "java:comp/env/sql/MRLoadBannerPositionSQL";
+  final String  UPDATE_LOGIN_TIME            = "java:comp/env/sql/MRUpdateLoginTime";
+  final String  INSERT_LOGIN_LOG             = "java:comp/env/sql/MRInsertLoginLog";
+
+  final String  LOAD_DRINFO_FAST             = "java:comp/env/sql/MRLoadDRInformationFastSQL";
+  final String  LOAD_MRPROFILE_FAST          = "java:comp/env/sql/MRLoadMRProfileFastSQL";
+
+  /**
+   * This method is used for populating the resultant object when
+   * a retrieval query is required. The resultset contains all the
+   * attributes of the retrieved object (as stored in the database),
+   * and so they are read and used to create in instance of the
+   * persisted object.
+   * @param attributes The resultset with the retrieved object in it.
+   */
+  private Object populateObject(Connection conn, ResultSet attributes)
+    throws NoObjectFoundException, SQLException, NamingException
+  {
+    // Check the state of the resultset
+    if (attributes == null)
+      throw new NoObjectFoundException("Resultset was null");
+    else if (!attributes.next())
+      return null;
+    else
+    {
+      //System.out.println("!!! Testing refresh on dependency class of EJB.  Works!");
+      //System.out.println("!!! Testing refresh on dependency class of EJB.  Works!");
+      //System.out.println("!!! Testing refresh on dependency class of EJB.  Works!");
+      //System.out.println("!!! Testing refresh on dependency class of EJB.  Works!");
+      //System.out.println("!!! Testing refresh on dependency class of EJB.  Works!");
+      //System.out.println("!!! Testing refresh on dependency class of EJB.  Works!");
+      
+      // Build DAO objects
+      DAO_SQL daoCompany  = new Company_DAO();
+      DAO_SQL daoWebImage = new WebImage_DAO();
+
+      MR resultMR = new MR();
+      resultMR.setMrId(attributes.getString("mr_id"));
+      resultMR.setKanjiName(attributes.getString("name"));
+      resultMR.setKanaName(attributes.getString("name_kana"));
+
+      // Load the company object
+      String companyID = attributes.getString("company_cd");
+      Company resultCompany = (Company) daoCompany.searchRecord(conn, companyID, "companyId");
+      resultMR.setCompany(resultCompany);
+
+      String pictureID = attributes.getString("picture_cd");
+      WebImage resultPicture = (WebImage) daoWebImage.searchRecord(conn, pictureID, "webImageId");
+      resultMR.setPictureDefault(resultPicture);
+
+      resultMR.setPassword(attributes.getString("password"));
+
+      // Load the address object
+      String address = attributes.getString("address");
+      String zip     = attributes.getString("zip_cd");
+      Address resultAddress = new Address();
+      resultAddress.setAreaCode(zip);
+      resultAddress.setLocation(address);
+      resultMR.setAddress(resultAddress);
+
+      resultMR.setIsOpen(new Boolean(attributes.getBoolean("kinmu_flg")));
+      resultMR.setOpenHoursSetting(new Boolean(attributes.getBoolean("eigyo_time_kbn")));
+      resultMR.setOpenDays(new Integer(attributes.getInt("eigyo_date_kbn")));
+      resultMR.setOpenTime(attributes.getString("eigyo_start_time"));
+      resultMR.setCloseTime(attributes.getString("eigyo_end_time"));
+      resultMR.setJikoSyokai(attributes.getString("jikosyokai"));
+
+      // Load the email and ccEmail objects
+      String email = attributes.getString("email");
+      resultMR.setEmail(email);
+
+      String ccEmail = attributes.getString("bigbrother_ccemail");
+      resultMR.setCCEmail(ccEmail);
+
+      String forwardEmail1 = attributes.getString("cc_email1");
+      if (forwardEmail1 != null)
+        resultMR.addForwardEmail(forwardEmail1);
+
+      String forwardEmail2 = attributes.getString("cc_email2");
+      if (forwardEmail2 != null)
+        resultMR.addForwardEmail(forwardEmail2);
+
+      String forwardEmail3 = attributes.getString("cc_email3");
+      if (forwardEmail3 != null)
+        resultMR.addForwardEmail(forwardEmail3);
+
+      String forwardEmail4 = attributes.getString("cc_email4");
+      if (forwardEmail4 != null)
+        resultMR.addForwardEmail(forwardEmail4);
+
+      // Phone objects
+      String companyPhone = attributes.getString("tel_no");
+      PhoneContact resultCompanyPhone = new PhoneContact();
+      resultCompanyPhone.setPhoneNumber(companyPhone);
+      resultMR.setCompanyPhone(resultCompanyPhone);
+
+      String cellularPhone = attributes.getString("keitai_no");
+      PhoneContact resultCellularPhone = new PhoneContact();
+      resultCellularPhone.setPhoneNumber(cellularPhone);
+      resultMR.setCellularPhone(resultCellularPhone);
+
+      String faxPhone = attributes.getString("fax_no");
+      PhoneContact resultFaxPhone = new PhoneContact();
+      resultFaxPhone.setPhoneNumber(faxPhone);
+      resultMR.setFaxPhone(resultFaxPhone);
+
+      // Get the forward email and DRInfo objects
+      populateDRInfoList(conn, resultMR);
+      return resultMR;
+    }
+  }
+
+  /**
+   * This method loads the DRInformation object associated with the MR.
+   */
+  private Collection populateDRInfoObjectList(Connection conn, String mrId)
+    throws NoObjectFoundException, SQLException, NamingException
+  {
+    DAO_SQL daoDRI = new DRInformation_DAO();
+	  return (Collection) daoDRI.searchRecord(conn, mrId, "mrId");
+  }
+
+
+  /**
+   * This method loads the DRInfo list (driId list) into the MR object.
+   */
+  private void populateDRInfoList(Connection conn, MR outputMR)
+    throws NoObjectFoundException, SQLException, NamingException
+  {
+    // Get a list of forwards
+    PreparedStatement drInfoListQuery = conn.prepareStatement(getSQLStatement(LOAD_MR_DRI));
+    drInfoListQuery.setString(1, outputMR.getMrId());
+    ResultSet driListSet = drInfoListQuery.executeQuery();
+
+    // Add them to the list
+    while (driListSet.next())
+      outputMR.addDRInformation(driListSet.getString("dr_id"));
+    driListSet.close();
+    drInfoListQuery.close();
+  }
+  
+  /**
+   * This method loads the DR's mr banner position field.
+   */
+  private String populateBannerPosition(Connection conn, Object searchObject)
+    throws NoObjectFoundException, SQLException, NamingException
+  {  
+  	String bannerPosition = "";
+
+    if((searchObject == null) || (!(searchObject instanceof Map)))
+      throw new ApplicationError(this.getClass().getName() + ": SearchObject is either null or in correct type.");  
+    else
+    {      
+      // Extract the sql where clause search criteria
+      Map sqlParams = (Map) searchObject;
+      String mrId = (String) sqlParams.get("mrId");
+      String drId = (String) sqlParams.get("drId"); 
+    
+      // Get a the dr memo
+      PreparedStatement sqlQuery = conn.prepareStatement(getSQLStatement(SEARCH_BANNER_POSITION_QUERY));
+      sqlQuery.setString(1, mrId);
+      sqlQuery.setString(2, drId);
+      ResultSet resultSet = sqlQuery.executeQuery();     
+      if (!resultSet.next()) 
+        return null;      
+      else         
+        bannerPosition = resultSet.getString("sentaku_kbn");     
+      resultSet.close();
+      sqlQuery.close();
+      return bannerPosition;
+    }
+  }
+
+  /**
+   * This method loads the DR memo field.
+   */
+  private String populateDRMemo(Connection conn, Object searchObject)
+    throws NoObjectFoundException, SQLException, NamingException
+  {
+  	String drMemo = "";
+    
+  	if((searchObject == null) || (!(searchObject instanceof Map)))
+      throw new ApplicationError(this.getClass().getName() + ": SearchObject is either null or in correct type.");  
+    else
+    {
+      // Extract the sql where clause search criteria
+      Map sqlParams = (Map) searchObject;
+      String mrId = (String) sqlParams.get("mrId");
+      String drId = (String) sqlParams.get("drId"); 
+    
+      // Get a the dr memo
+      PreparedStatement drMemoQuery = conn.prepareStatement(getSQLStatement(SEARCH_DR_MEMO_BY_ID_QUERY));
+      drMemoQuery.setString(1, mrId);
+      drMemoQuery.setString(2, drId);
+      ResultSet result = drMemoQuery.executeQuery();
+      if(!result.next())   
+        return null;
+      else         
+        drMemo = result.getString("dr_memo");
+      result.close();
+      drMemoQuery.close();
+    }
+    
+    return drMemo;
+  }
+  
+  /**
+   * Get a sql string from the environment variables in the deployment
+   * descriptor
+   */
+  private String getSQLStatement(String statementLocation) throws NamingException
+  {
+    InitialContext ctx = new InitialContext();
+    String sqlStatement = (String) ctx.lookup(statementLocation);
+    return sqlStatement;
+  }
+
+  /**
+   * This method contains the logic for adding a new MR into the
+   * database.
+   *
+   * @param conn The JDBC connection object.
+   * @param addDR The DR object to be inserted.
+   */
+  public boolean createRecord(Connection  conn,
+                              Object      addDR)
+    throws SQLException, NamingException
+  {
+    throw new NotImplementedException();
+  }
+
+  /**
+   * This method contains the logic for retrieving
+   * a MR from the database, where a MR name is all we have.<br/>
+   * Note: While this query may return many DR objects if the name
+   * field is not unique, only the first will be retrieved.
+   *
+   * @param conn The JDBC connection object.
+   * @param name The DR's name as a filter for the query.
+   */
+  public Object searchRecord(Connection  conn,
+                             Object      searchObject,
+                             String      filter)
+    throws SQLException, NoObjectFoundException, NamingException
+  {
+    // Create the query
+    String queryString = "";
+    if (filter.equals("mrId"))
+      queryString = getSQLStatement(SEARCH_BY_ID_QUERY);
+    else if (filter.equals("name"))
+      queryString = getSQLStatement(SEARCH_BY_NAME_QUERY);
+	  else if (filter.equals("mr_drInfo_list"))
+	    return populateDRInfoObjectList(conn, (String) searchObject);
+    else if (filter.equals("drId"))
+      queryString = getSQLStatement(SEARCH_BY_DRID_QUERY);
+    else if (filter.equals("drMemo"))
+      return populateDRMemo(conn, searchObject);
+    else if (filter.equals("bannerPosition"))
+      return populateBannerPosition(conn, searchObject);
+    else if (filter.equals("mr2_optimised"))
+      queryString = getSQLStatement(LOAD_DRINFO_FAST);
+    else if (filter.equals("dr2_optimised"))
+      queryString = getSQLStatement(LOAD_MRPROFILE_FAST);
+    else
+      throw new ApplicationError("Invalid query filter type - " + filter);
+
+    PreparedStatement searchQuery = conn.prepareStatement(queryString);
+    Object returnValue = null;
+    if (filter.equals("dr2_optimised"))
+    {
+      searchQuery.setObject(1, searchObject);
+      searchQuery.setObject(2, searchObject);
+      ResultSet results = searchQuery.executeQuery();
+      returnValue = populateMrProfiles(conn, results);
+      results.close();
+    }
+    else if (filter.equals("mr2_optimised"))
+    {
+      Map     params        = (Map) searchObject;
+      String  mrId          = (String) params.get("mrId");
+      Map     messageCounts = (Map) params.get("messageCounts");
+      searchQuery.setObject(1, mrId);
+      searchQuery.setObject(2, mrId);
+      ResultSet results = searchQuery.executeQuery();
+      Collection temp = populateDRInfo_mr2(conn, results, messageCounts);
+      returnValue = temp;
+      results.close();
+
+    }
+    else if (filter.equals("drId"))
+    {
+      // Build a collection and iterate through the populateObject method for each row
+      searchQuery.setObject(1, searchObject);
+      ResultSet results = searchQuery.executeQuery();
+      Collection resultList = new ArrayList();
+      Object oneValue = populateObject(conn, results);
+      while (oneValue != null)
+      {
+        resultList.add(oneValue);
+        oneValue = populateObject(conn, results);
+      }
+      returnValue = resultList;
+    }
+    else
+    {
+      searchQuery.setObject(1, searchObject);
+      ResultSet results = searchQuery.executeQuery();
+      returnValue = populateObject(conn,results);
+      results.close();
+    }
+    searchQuery.close();
+    return returnValue;
+  }
+
+  /**
+   * This method loads up a map of mrProfile objects, the result of the
+   * SEARCH_BY_DRID query. This is complex, and involves a lot more use of
+   * side effects than I'd like, but performance is the goal here.<br>
+   * This query is essentially an outerjoin between sentaku_toroku and
+   * a filtered view on the message_header and message_body tables. We want
+   * only the edetails to this dr, and only summary details for any messages
+   * found.
+   */
+  protected Map populateMrProfiles(Connection conn, ResultSet attributes)
+    throws SQLException, NamingException
+  {
+    Map returnValue = new Hashtable();
+    while (attributes.next())
+    {
+      /**
+       * STEP 1:
+       * First we setup the MR object - this is a copy of what's in populateObject.
+       */
+
+      // Build DAO objects
+      DAO_SQL daoCompany  = new Company_DAO();
+      DAO_SQL daoWebImage = new WebImage_DAO();
+
+      MR resultMR = new MR();
+      resultMR.setMrId(attributes.getString("mr_id"));
+      resultMR.setKanjiName(attributes.getString("name"));
+      resultMR.setKanaName(attributes.getString("name_kana"));
+
+      // Load the company object
+      String companyID = attributes.getString("company_cd");
+      Company resultCompany = (Company) daoCompany.searchRecord(conn, companyID, "companyId");
+      resultMR.setCompany(resultCompany);
+
+      String pictureID = attributes.getString("picture_cd");
+      WebImage resultPicture = (WebImage) daoWebImage.searchRecord(conn, pictureID, "webImageId");
+      resultMR.setPictureDefault(resultPicture);
+
+      resultMR.setPassword(attributes.getString("password"));
+
+      // Load the address object
+      String address = attributes.getString("address");
+      String zip     = attributes.getString("zip_cd");
+      Address resultAddress = new Address();
+      resultAddress.setAreaCode(zip);
+      resultAddress.setLocation(address);
+      resultMR.setAddress(resultAddress);
+
+      resultMR.setIsOpen(new Boolean(attributes.getBoolean("kinmu_flg")));
+      resultMR.setOpenHoursSetting(new Boolean(attributes.getBoolean("eigyo_time_kbn")));
+      resultMR.setOpenDays(new Integer(attributes.getInt("eigyo_date_kbn")));
+      resultMR.setOpenTime(attributes.getString("eigyo_start_time"));
+      resultMR.setCloseTime(attributes.getString("eigyo_end_time"));
+      resultMR.setJikoSyokai(attributes.getString("jikosyokai"));
+
+      // Load the email and ccEmail objects
+      String email = attributes.getString("email");
+      resultMR.setEmail(email);
+
+      String ccEmail = attributes.getString("bigbrother_ccemail");
+      resultMR.setCCEmail(ccEmail);
+
+      String forwardEmail1 = attributes.getString("cc_email1");
+      if (forwardEmail1 != null)
+        resultMR.addForwardEmail(forwardEmail1);
+
+      String forwardEmail2 = attributes.getString("cc_email2");
+      if (forwardEmail2 != null)
+        resultMR.addForwardEmail(forwardEmail2);
+
+      String forwardEmail3 = attributes.getString("cc_email3");
+      if (forwardEmail3 != null)
+        resultMR.addForwardEmail(forwardEmail3);
+
+      String forwardEmail4 = attributes.getString("cc_email4");
+      if (forwardEmail4 != null)
+        resultMR.addForwardEmail(forwardEmail4);
+
+      // Phone objects
+      String companyPhone = attributes.getString("tel_no");
+      PhoneContact resultCompanyPhone = new PhoneContact();
+      resultCompanyPhone.setPhoneNumber(companyPhone);
+      resultMR.setCompanyPhone(resultCompanyPhone);
+
+      String cellularPhone = attributes.getString("keitai_no");
+      PhoneContact resultCellularPhone = new PhoneContact();
+      resultCellularPhone.setPhoneNumber(cellularPhone);
+      resultMR.setCellularPhone(resultCellularPhone);
+
+      String faxPhone = attributes.getString("fax_no");
+      PhoneContact resultFaxPhone = new PhoneContact();
+      resultFaxPhone.setPhoneNumber(faxPhone);
+      resultMR.setFaxPhone(resultFaxPhone);
+
+      // Get the forward email and DRInfo objects
+      //populateDRInfoList(conn, resultMR);  -- commented out here because this is for dr's list of MRs.
+
+      /**
+       * STEP 2:
+       * Extract the message summary info and build an MrProfile
+       */
+      MrProfile mrp = new MrProfile(resultMR.getMrId(), resultMR);
+      if(attributes.getString("sentaku_kbn") != null)
+        mrp.setMrBannerPosition(attributes.getString("sentaku_kbn"));
+      else
+        mrp.setMrBannerPosition("");
+
+      int             queryUnread   = attributes.getInt("unread_edetail_count");
+      String          queryId       = attributes.getString("unread_edetail_id");
+      java.util.Date  queryDate     = attributes.getDate("unread_edetail_sent_date");
+      String          querySubject  = attributes.getString("unread_edetail_title");
+
+      // Important explanatory point - This query uses outer joins, so even
+      // if there are no messages returned for this dr, the count field will be
+      // 1, because a row will always be returned, but the fields from the message
+      // table will be null. Therefore we check for this case, and set all fields
+      // to null and the count to zero if it's true.
+      if ((queryUnread == 1) && (queryId == null))
+      {
+        // There were no messages for this Dr
+        mrp.setReceivedMessage(0);
+      }
+      else
+      {
+        // all values are valid
+        mrp.setReceivedMessage(queryUnread);
+        mrp.setUnreadMessageId(queryId);
+        mrp.setUnreadDate(queryDate);
+        mrp.setUnreadSubject(querySubject);
+      }
+      returnValue.put(resultMR.getMrId(), mrp);
+    }
+    return returnValue;
+  }
+
+  /**
+   * This method builds a collection of DRInformation objects ready for display
+   * on the mr2.0 screen. This also is a complex method using outer joins in the
+   * query. Be careful with changes.<br>
+   * @param conn The current db connection
+   * @param attributes The resultset to draw properties from (after executing the LOAD_DRINFO_FAST query)
+   * @param messageCounts A map of drIds to DRMessageCount objects.
+   */
+  protected Collection populateDRInfo_mr2(Connection conn, ResultSet attributes, Map messageCounts)
+    throws SQLException, NamingException
+  {
+    Collection returnValue = new ArrayList();
+    DAO_SQL daoImportance   = new Importance_DAO();
+    while (attributes.next())
+    {
+      DRInformation resultDRI = new DRInformation();
+      resultDRI.setDrId(attributes.getString("dr_id"));
+      resultDRI.setName(attributes.getString("name"));
+      resultDRI.setHospital(attributes.getString("kinmusaki"));
+      resultDRI.setClientId(attributes.getString("maker_cust_id"));
+      resultDRI.setOccupation(attributes.getString("syokusyu"));
+      resultDRI.setDivision(attributes.getString("senmon1"));
+      resultDRI.setPosition(attributes.getString("yakusyoku"));
+      resultDRI.setGraduatedUniversity(attributes.getString("sotsugyo_daigaku"));
+      resultDRI.setHobby(attributes.getString("syumi"));
+      resultDRI.setYearOfGraduation(attributes.getString("sotsugyo_year"));
+      resultDRI.setMemo(attributes.getString("sonota"));
+      resultDRI.setHospitalId(attributes.getString("maker_shisetsu_id"));
+      resultDRI.setMrId(attributes.getString("mr_id"));
+
+      // get Importance
+      String importanceId = attributes.getString("target_rank");
+
+      if( importanceId == null ){
+        Importance tempImportance = new Importance();
+        tempImportance.setImportanceId("");
+        if(tempImportance.getImportanceId() == null)
+        {System.out.println("Null pointer");}
+        tempImportance.setName("");
+        resultDRI.setImportance(tempImportance);
+      }else{
+        Map params = new Hashtable();
+        params.put("importanceId", importanceId);
+        params.put("mrId", resultDRI.getMrId());
+        Importance resultImportance = (Importance) daoImportance.searchRecord(conn, params, "importanceId");
+        resultDRI.setImportance(resultImportance);
+      }
+      // Setup the message counts
+      int edetailCount = attributes.getInt("edetail_count");
+      int contactCount = attributes.getInt("contact_count");
+      String edetailId = attributes.getString("edetail_id");
+      String contactId = attributes.getString("contact_id");
+
+      DRMessageCount drm = new DRMessageCount();
+      drm.setNewContacts(contactCount);
+      drm.setNewEDetails(edetailCount);
+      drm.setActionValue(determineActionValue(edetailCount, contactCount));
+      resultDRI.setReceivedMessage(new Integer(contactCount));
+      resultDRI.setUnreadSentMessage(new Integer(edetailCount));
+      resultDRI.setActionValue(new Integer(drm.getActionValue()));
+
+      if (edetailCount == 1)
+        drm.setNewEDetailId(edetailId);
+      if (contactCount == 1)
+        drm.setNewContactId(contactId);
+
+      returnValue.add(resultDRI);
+      messageCounts.put(resultDRI.getDrId(), drm);
+    }
+    return returnValue;
+  }
+
+  protected int determineActionValue(int edetailCount, int contactCount)
+  {
+    if (contactCount > 0)
+      return 0;
+    else if ((contactCount == 0) && (edetailCount == 0))
+      return 1;
+    else if (edetailCount > 0)
+      return 2;
+    else
+      throw new ApplicationError("Very funky action value");
+  }
+  
+  /**
+   * This method contains the logic for updating an existing MR in
+   * the database.
+   *
+   * @param conn The JDBC connection object.
+   * @param saveDR The MR object to be saved.
+   */
+  public boolean updateRecord(Connection  conn,
+                              Object      saveObject)
+    throws SQLException, NamingException
+  {
+    // Check save object type
+    if ((saveObject instanceof MR))
+    {
+      MR workingMR = (MR) saveObject;
+
+      // Save the company
+      DAO_SQL daoCompany  = new Company_DAO();
+      DAO_SQL daoWebImage = new WebImage_DAO();
+      DAO_SQL daoDRInfo   = new DRInformation_DAO();
+
+      // Save the Company object - commented out because we don't save dependant objects
+      //if (!daoCompany.updateRecord(conn, workingMR.getCompany()))
+      //  if (!daoCompany.createRecord(conn, workingMR.getCompany()))
+      //    throw new RuntimeException("Error saving MR company");
+
+      // Save the picture object
+      //if (!daoWebImage.updateRecord(conn, workingMR.getPictureDefault()))
+      //  if (!daoWebImage.createRecord(conn, workingMR.getPictureDefault()))
+      //    throw new RuntimeException("Error saving MR picture");
+
+      // Save the main MR record
+      PreparedStatement saveQuery = conn.prepareStatement(getSQLStatement(SAVE_QUERY));
+      saveQuery.setString(1, workingMR.getKanjiName());
+      saveQuery.setString(2, workingMR.getKanaName());
+      if (workingMR.getCompany() == null)
+        saveQuery.setNull(3, Types.VARCHAR);
+      else
+        saveQuery.setString(3, workingMR.getCompany().getCompanyId());
+      if (workingMR.getPictureDefault() == null)
+        saveQuery.setNull(4, Types.VARCHAR);
+      else
+        saveQuery.setString(4, workingMR.getPictureDefault().getWebImageId());
+      if (workingMR.getPassword() == null)
+        saveQuery.setNull(5, Types.VARCHAR);
+      else
+        saveQuery.setString(5, workingMR.getPassword());
+      if (workingMR.getAddress() == null)
+      {
+        saveQuery.setNull(6, Types.VARCHAR);
+        saveQuery.setNull(7, Types.VARCHAR);
+      }
+      else
+      {
+        if (workingMR.getAddress().getLocation() == null)
+          saveQuery.setNull (6, Types.VARCHAR);
+        else
+          saveQuery.setString(6, workingMR.getAddress().getLocation());
+
+        if (workingMR.getAddress().getAreaCode() == null)
+          saveQuery.setNull(7, Types.VARCHAR);
+        else
+          saveQuery.setString(7, workingMR.getAddress().getAreaCode());
+      }
+
+      if (workingMR.isOpen() == null)
+        saveQuery.setNull(8, Types.BIT);
+      else
+        saveQuery.setBoolean(8, workingMR.isOpen().booleanValue());
+
+      if (workingMR.getOpenHoursSetting() == null)
+        saveQuery.setNull(9, Types.BIT);
+      else
+        saveQuery.setBoolean(9, workingMR.getOpenHoursSetting().booleanValue());
+
+      if (workingMR.getOpenHoursSetting() == null)
+        saveQuery.setNull(10, Types.BIT);
+      else
+        saveQuery.setInt(10, workingMR.getOpenDays().intValue());
+
+      if (workingMR.getOpenTime() == null)
+        saveQuery.setNull(11, Types.VARCHAR);
+      else
+        saveQuery.setString (11, workingMR.getOpenTime());
+
+      if (workingMR.getCloseTime() == null)
+        saveQuery.setNull(12, Types.VARCHAR);
+      else
+        saveQuery.setString (12, workingMR.getCloseTime());
+
+      if (workingMR.getEmail() == null)
+        saveQuery.setNull(13, Types.VARCHAR);
+      else
+        saveQuery.setString (13, workingMR.getEmail());
+
+      for (int nLoop = 0; nLoop < 4; nLoop++)
+        if ((workingMR.getForwardEmailList().size() <= nLoop))
+          saveQuery.setNull   (14 + nLoop, Types.VARCHAR);
+        else
+          saveQuery.setString (14 + nLoop,
+                               ((String)workingMR.getForwardEmailList().get(nLoop)));
+
+      if (workingMR.getCompanyPhone() == null)
+        saveQuery.setNull(18, Types.VARCHAR);
+      else
+        saveQuery.setString (18, workingMR.getCompanyPhone().getPhoneNumber());
+
+      if (workingMR.getCellularPhone() == null)
+        saveQuery.setNull(19, Types.VARCHAR);
+      else
+        saveQuery.setString (19, workingMR.getCellularPhone().getPhoneNumber());
+
+      if (workingMR.getFaxPhone() == null)
+        saveQuery.setNull(20, Types.VARCHAR);
+      else
+        saveQuery.setString (20, workingMR.getFaxPhone().getPhoneNumber());
+
+      if (workingMR.getCCEmail() == null)
+        saveQuery.setNull(21, Types.VARCHAR);
+      else
+        saveQuery.setString (21, workingMR.getCCEmail());
+
+      if (workingMR.getJikoSyokai() == null)
+        saveQuery.setNull(22, Types.VARCHAR);
+      else
+        saveQuery.setString (22, workingMR.getJikoSyokai());
+
+      saveQuery.setString (23, workingMR.getMrId());
+
+      int rowsAffected = saveQuery.executeUpdate();
+      saveQuery.close();
+      return (rowsAffected == 1);
+    }
+    else if (saveObject instanceof Map)
+    {
+      Map params = (Map) saveObject;
+      String mrId = (String) params.get("mrId");
+      String userAgent = (String) params.get("userAgent");
+      String operation = (String) params.get("operation");
+      if (operation == null)
+        throw new ApplicationError("Operation field was not specified");
+      else if (operation.equals("loginTime"))
+      {
+        PreparedStatement insertLogQuery = conn.prepareStatement(getSQLStatement(INSERT_LOGIN_LOG));
+        insertLogQuery.setString(1, mrId);
+        insertLogQuery.setString(2, "1");	//MR Side:1, WM Side:2
+        insertLogQuery.setString(3, userAgent);
+        insertLogQuery.executeUpdate();
+        insertLogQuery.close();
+
+        PreparedStatement updateTimeQuery = conn.prepareStatement(getSQLStatement(UPDATE_LOGIN_TIME));
+        updateTimeQuery.setString(1, mrId);
+        int affectedRows = updateTimeQuery.executeUpdate();
+        updateTimeQuery.close();
+        return (affectedRows == 1);
+      }
+      else
+        throw new ApplicationError("Save object is incorrect type - " + saveObject.getClass());
+    }
+    else
+      throw new ApplicationError("Save object is incorrect type - " + saveObject.getClass());
+
+  }
+
+  /**
+   * This method contains the logic for deleting an existing MR from
+   * the database.
+   *
+   * @param conn The JDBC connection object.
+   * @param deleteDR The MR object to be removed.
+   */
+  public boolean deleteRecord(Connection  conn,
+                              Object      deleteMR)
+    throws SQLException, NamingException
+  {
+    // Check delete object type
+    if (!(deleteMR instanceof MR))
+      throw new RuntimeException("Delete object is incorrect type - " + deleteMR.getClass());
+    MR workingMR = (MR) deleteMR;
+
+    // Delete the DR
+    PreparedStatement deleteQuery = conn.prepareStatement(getSQLStatement(REMOVE_QUERY));
+    deleteQuery.setString(1, workingMR.getMrId());
+    int rowsAffected = deleteQuery.executeUpdate();
+    deleteQuery.close();
+    return (rowsAffected == 1);
+  }
+
+  /**
+   * Create new instances in persistent storage
+   */
+  public boolean createMultiple(Connection conn, Object modifyingObject)
+    throws SQLException, NamingException
+  {
+    throw new NotImplementedException();
+  }
+
+  /**
+   * Retrieves existing instances from persistent storage
+   */
+  public Object searchMultiple(Connection conn, Object searchObject, String filter)
+    throws SQLException, NamingException
+  {
+    throw new NotImplementedException();
+  }
+
+  /**
+   * Saves existing instances in persistent storage
+   */
+  public boolean updateMultiple(Connection conn, Object modifyingObject)
+    throws SQLException, NamingException
+  {
+    throw new NotImplementedException();
+  }
+
+  /**
+   * Deletes existing instances from persistent storage
+   */
+  public boolean deleteMultiple(Connection conn, Object modifyingObject)
+    throws SQLException, NamingException
+  {
+  	int rowsAffected = 0;
+  	
+    if (modifyingObject instanceof Map)
+    {
+      PreparedStatement insertHistQuery = null;
+      PreparedStatement deleteSentakuQuery = null;
+      
+      // Extract the sql parameters mr list to be deleted and drId
+      Map sqlParams = (Map) modifyingObject;
+      Collection deleteMRList = (Collection) sqlParams.get(sessionEJBConstant.DELETE_MR_LIST);
+      String drId = (String) sqlParams.get(sessionEJBConstant.DR_ID);
+      
+      // Verify whether the required parameters are null or not 
+      if((deleteMRList == null) || (drId == null))
+        throw new ApplicationError(this.getClass().getName() + ": SQL parameters (mrId list or drId) passed in null.");
+      else
+      {
+      	try
+        {
+          conn.setAutoCommit(false);
+      	  // For each mr who is chosen to be deleted, do the 2-phase sql operation
+          for (Iterator itr = deleteMRList.iterator(); itr.hasNext(); )
+          {        
+            // First insert a dr-with-mr's row into the sentaku_toroku_hist table
+            MR mr = (MR) itr.next();
+            insertHistQuery = conn.prepareStatement(getSQLStatement(INSERT_SENTAKU_TOROKU_HIST));
+            insertHistQuery.setString(1, drId);
+            insertHistQuery.setString(2, mr.getMrId());
+    	    rowsAffected = insertHistQuery.executeUpdate();
+            insertHistQuery.close();
+          
+            // If the first phase sql operation ok, then perform the second one          
+            if (rowsAffected == 1)
+            {
+          	  // Delete the actual dr-with-mr's row in the sentaku_toroku table 
+              deleteSentakuQuery = conn.prepareStatement(getSQLStatement(DELETE_SENTAKU_TOROKU));      
+              deleteSentakuQuery.setString(1, drId);
+              deleteSentakuQuery.setString(2, mr.getMrId());
+    	      rowsAffected = deleteSentakuQuery.executeUpdate();
+              deleteSentakuQuery.close(); 
+              if(rowsAffected !=1)
+                throw new SQLException("MR_DAO.deleteMulitple cannot delete MR-DR record from SENTAKU_TOROKU table.");
+            } 
+            else
+              throw new SQLException("MR_DAO.deleteMulitple cannot insert MR-DR record into SENTAKU_TOROKU_HIST table.");    
+          }
+          conn.commit();
+        }
+        catch( SQLException exSQL )
+        {
+          conn.rollback();
+          throw new ApplicationError("MR_DAO.deleteMulitple cannot delete MR and rollback transaction.", exSQL );
+        }
+        finally
+        {
+          conn.setAutoCommit(true); 
+        }
+      }  
+    }
+    else
+      throw new NotImplementedException("ModifyingObject is in incorrect type.");
+    return (rowsAffected == 1);
+  }
+
+}
+

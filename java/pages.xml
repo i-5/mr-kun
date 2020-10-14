@@ -1,0 +1,266 @@
+<?xml version="1.0" standalone="yes"?>
+
+<pages application="MRKun" version="2.0">
+
+  <page id="dr00-1.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DR">pageDR</parameter>
+  </page>
+
+  <page id="dr01.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DR">pageDR</parameter>
+    <parameter required="yes" type="java.util.Collection">mrProfileList</parameter>
+    <parameter required="yes" type="java.util.Collection">sortOptions</parameter>
+    <parameter required="yes" type="java.lang.Integer">mrDetail</parameter>
+  </page>
+
+  <page id="dr02.jsp">
+    <parameter required="yes" type="java.util.Collection">mrProfileList</parameter>
+    <parameter required="yes" type="java.lang.String">sortBy</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DR">pageDR</parameter>
+  </page>
+
+  <page id="dr03-1.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MrProfile">mrProfile</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.Message">message</parameter>
+    <parameter required="yes" type="java.util.Collection">attachmentList</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DR">pageDR</parameter>
+  </page>
+
+  <page id="dr03-2.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MrProfile">mrProfile</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.Message">message</parameter>
+    <parameter required="yes" type="java.util.Collection">attachmentList</parameter>
+    <parameter required="yes" type="java.util.Collection">linkList</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DR">pageDR</parameter>
+  </page>
+
+  <page id="dr03-3.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MrProfile">mrProfile</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DR">pageDR</parameter>
+    <parameter required="yes" type="java.util.Collection">messageList</parameter>
+  </page>
+
+  <page id="dr03.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MrProfile">mrProfile</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DR">pageDR</parameter>
+    <parameter required="yes" type="java.util.Collection">messageList</parameter>
+    <parameter required="yes" type="java.util.Collection">sortOptions</parameter>
+    <parameter required="yes" type="java.lang.Integer">selectedPage</parameter>
+    <parameter required="yes" type="java.lang.Integer">maxPages</parameter>
+    <parameter required="yes" type="java.lang.String">sortByField</parameter>
+  </page>
+
+  <page id="dr04.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MrProfile">mrProfile</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DR">pageDR</parameter>
+    <parameter required="yes" type="java.lang.String">memo</parameter>
+  </page>
+
+  <page id="dr05-1.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DR">pageDR</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MR">mrConfirm</parameter>
+  </page>
+
+  <page id="dr05.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DR">pageDR</parameter>
+    <parameter required="yes" type="java.lang.String">errorMessage</parameter>
+  </page>
+
+  <page id="dr06-1.jsp">
+    <parameter required="yes" type="java.util.Collection">deleteMRList</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DR">pageDR</parameter>
+    <parameter required="yes" type="java.lang.String">sortBy</parameter>
+  </page>
+
+  <page id="dr06.jsp">
+    <parameter required="yes" type="java.util.Collection">mrProfileList</parameter>
+    <parameter required="yes" type="java.lang.String">sortBy</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DR">pageDR</parameter>
+    <parameter required="yes" type="java.util.Collection">checkedDeleteMR</parameter>
+    <parameter required="yes" type="java.lang.String">errorMessage</parameter>
+  </page>
+
+  <page id="dr07.jsp">
+    <parameter required="yes" type="java.util.Collection">mrProfileList</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DR">pageDR</parameter>
+  </page>
+
+  <page id="dr08-1.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.Contact">message</parameter>
+    <parameter required="yes" type="java.util.Collection">recipientNames</parameter>
+    <parameter required="yes" type="java.util.Collection">attachmentList</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DR">pageDR</parameter>
+  </page>
+
+  <page id="dr08-2.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DR">pageDR</parameter>
+  </page>
+
+  <page id="dr08-2a.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DR">pageDR</parameter>
+    <parameter required="yes" type="java.util.Collection">attachmentList</parameter>
+  </page>
+
+  <page id="dr08.jsp">
+    <parameter required="yes" type="java.util.Collection">mrInfoList</parameter>
+    <parameter required="yes" type="java.lang.String">sortBy</parameter>
+    <parameter required="yes" type="java.util.Collection">selectedMRs</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DR">pageDR</parameter>
+  </page>
+
+  <page id="dr10.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DR">pageDR</parameter>
+    <parameter required="yes" type="java.lang.String">errorMessage</parameter>
+  </page>
+
+  <page id="dr12.jsp">
+    <parameter required="yes" type="java.lang.String">sessionErrorMessage</parameter>
+  </page>
+
+  <page id="mr01.jsp">
+    <parameter required="yes" type="java.lang.String">sessionErrorMessage</parameter>
+  </page>
+
+  <page id="mr02.jsp">
+    <parameter required="yes" type="java.util.Collection">drInfoList</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.Ranking">ranking</parameter>
+    <parameter required="yes" type="java.lang.String">sortBy</parameter>
+    <parameter required="yes" type="java.util.Map">messageId</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MR">pageMR</parameter>
+  </page>
+
+  <page id="mr03-1.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DRInformation">drInfo</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.Message">message</parameter>
+    <parameter required="yes" type="java.util.Collection">attachmentList</parameter>
+    <parameter required="yes" type="java.util.Collection">linkList</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MR">pageMR</parameter>
+  </page>
+
+  <page id="mr03-2.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DRInformation">drInfo</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.Message">message</parameter>
+    <parameter required="yes" type="java.util.Collection">attachmentList</parameter>
+    <parameter required="yes" type="java.lang.Integer">unreadMessages</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MR">pageMR</parameter>
+    <parameter required="yes" type="java.lang.String">unreadMessageId</parameter>
+  </page>
+
+  <page id="mr03-3.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DRInformation">drInfo</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MR">pageMR</parameter>
+    <parameter required="yes" type="java.util.Collection">messageList</parameter>
+  </page>
+
+  <page id="mr03.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DRInformation">drInfo</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.UsageStatistics">preMonthUsageData</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.UsageStatistics">curMonthUsageData</parameter>
+    <parameter required="yes" type="java.util.Collection">messageList</parameter>
+    <parameter required="yes" type="java.util.Collection">sortOptions</parameter>
+    <parameter required="yes" type="java.lang.Integer">selectedPage</parameter>
+    <parameter required="yes" type="java.lang.Integer">maxPages</parameter>
+    <parameter required="yes" type="java.lang.String">sortByField</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MR">pageMR</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DRInformation">drInfo</parameter>
+  </page>
+
+  <page id="mr04-1.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DRInformation">drInfo</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MR">pageMR</parameter>
+    <parameter required="yes" type="java.lang.String">errorMessage</parameter>
+    <parameter required="yes" type="java.util.List">importanceLabelsList</parameter>
+  </page>
+
+  <page id="mr04.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.DRInformation">drInfo</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MR">pageMR</parameter>
+  </page>
+
+  <page id="mr05-1.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.EDetail">message</parameter>
+    <parameter required="yes" type="java.util.Collection">categoryList</parameter>
+    <parameter required="yes" type="java.util.Collection">recipientNames</parameter>
+    <parameter required="yes" type="java.util.Collection">photoList</parameter>
+    <parameter required="yes" type="java.util.Collection">attachmentList</parameter>
+    <parameter required="yes" type="java.util.Collection">linkList</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MR">pageMR</parameter>
+    <parameter required="yes" type="java.lang.String">errorMessage</parameter>
+    <parameter required="yes" type="java.lang.String">replyMessage</parameter>
+  </page>
+
+  <page id="mr05-2.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MR">pageMR</parameter>
+    <parameter required="yes" type="java.util.Collection">categoryListList</parameter>
+    <parameter required="yes" type="java.util.Collection">selectedLinkIds</parameter>
+  </page>
+
+  <page id="mr05-2a.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MR">pageMR</parameter>
+    <parameter required="yes" type="java.util.Collection">linkList</parameter>
+  </page>
+
+  <page id="mr05-3.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.ResourceLink">link</parameter>
+  </page>
+
+  <page id="mr05-3_frameset.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MR">pageMR</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.ResourceLink">link</parameter>
+  </page>
+
+  <page id="mr05-4.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MR">pageMR</parameter>
+    <parameter required="yes" type="java.util.Collection">categoryList</parameter>
+    <parameter required="yes" type="java.lang.String">templateId</parameter>
+  </page>
+
+  <page id="mr05-5.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MR">pageMR</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.Template">template</parameter>
+  </page>
+
+  <page id="mr05-6.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MR">pageMR</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.EDetail">message</parameter>
+    <parameter required="yes" type="java.util.Collection">attachmentList</parameter>
+    <parameter required="yes" type="java.util.Collection">linkList</parameter>
+    <parameter required="yes" type="java.util.Collection">recipientList</parameter>
+    <parameter required="yes" type="java.lang.String">categoryText</parameter>
+  </page>
+
+  <page id="mr05-7.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MR">pageMR</parameter>
+  </page>
+
+  <page id="mr05-7a.jsp">
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MR">pageMR</parameter>
+    <parameter required="yes" type="java.util.Collection">attachmentList</parameter>
+  </page>
+
+  <page id="mr05.jsp">
+    <parameter required="yes" type="java.util.Collection">drInfoList</parameter>
+    <parameter required="yes" type="java.util.Collection">sortOptions</parameter>
+    <parameter required="yes" type="java.lang.String">sortBy</parameter>
+    <parameter required="yes" type="java.util.Map">messageId</parameter>
+    <parameter required="yes" type="java.util.Collection">selectedDRs</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MR">pageMR</parameter>
+    <parameter required="yes" type="java.lang.String">forwardMessage</parameter>
+  </page>
+
+  <page id="mr06.jsp">
+    <parameter required="yes" type="java.util.Map">mrUsagePoint</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MR">pageMR</parameter>
+  </page>
+
+  <page id="mr07.jsp">
+    <parameter required="yes" type="java.util.Collection">OpenTimesList</parameter>
+    <parameter required="yes" type="java.util.Collection">CloseTimesList</parameter>
+    <parameter required="yes" type="jp.ne.sonet.mrkun.valueobject.MR">pageMR</parameter>
+  </page>
+
+  <page id="mr09.jsp">
+    <parameter required="yes" type="java.lang.String">ErrorDescription</parameter>
+  </page>
+
+</pages>
